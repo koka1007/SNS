@@ -12,7 +12,7 @@ public class Aikata implements Serializable {
 
 	}
 
-	public int getPoint() {return number;}
+	public int getNumber() {return number;}
 
 
 
