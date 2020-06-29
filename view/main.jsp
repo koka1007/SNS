@@ -6,23 +6,54 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>笑撃の新人/漫才バトル!</title>
+
+		<!-- JavaScript読み込み開始 -->
+			<script type="text/javascript" src="javascript/common/common.js"></script>
+		<!-- JavaScript読み込み終了 -->
+
+		<!-- CSS読み込み開始 -->
+			<script type="text/javascript">common_link();</script>
+		<!-- CSS読み込み終了 -->
 	</head>
 
 	<body>
-		<%
-			RegistName registName = (RegistName)session.getAttribute("rname");
-			Point point = (Point)session.getAttribute("point");
- 		%>
 
-		<%= registName.getName() %>
-		<%= point.getPoint() %>
+		<!-- ヘッダー部分スタート(function heder()呼び出し) -->
+			<script type="text/javascript">header();</script>
+		<!-- ヘッダー部分終了 -->
 
-		<form action="<%= request.getContextPath() %>/main"method="post">
-			グー：<input type="radio" name="janken"value="0"><br>
-			チョキ：<input type="radio" name="janken"value="1"><br>
-			パー：<input type="radio" name="janken"value="2"><br>
-			<input type="submit"value="pon">
-		</form>
+
+		<!-- メイン画面開始 -->
+		<center>
+			<!-- canvas開始 -->
+				<script type="text/javascript">canvas_func();</script>
+			<!-- canvas終了 -->
+
+
+			<font color="white">
+				<%
+					RegistName registName = (RegistName)session.getAttribute("rname");
+					Point point = (Point)session.getAttribute("point");
+	 			%><br>
+
+				<%= registName.getName() %>
+				<%= point.getPoint() %>
+
+				<form action="<%= request.getContextPath() %>/main"method="post">
+					グー：<input type="radio" name="janken"value="0"><br>
+					チョキ：<input type="radio" name="janken"value="1"><br>
+					パー：<input type="radio" name="janken"value="2"><br>
+					<input type="submit"value="pon">
+				</form>
+			</font>
+		</center><br>
+		<!-- メイン画面終了 -->
+
+
+		<!-- フッター部分スタート(function footer()呼び出し)-->
+			<script type="text/javascript">footer();</script>
+		<!-- フッター部分終了-->
+
 	</body>
 </html>
