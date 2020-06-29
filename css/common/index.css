@@ -1,12 +1,9 @@
 body {
     background: black;
-
 }
-
 
 .header_size{
     background: black;
-
 }
 
 .header_size image{
@@ -26,15 +23,12 @@ body {
 	float:left;
 	margin-top:15px;
 	margin-left:10%;
-  ;
 }
 
 .menu{
 	float:right;
 	margin-top:20px;
 	margin-right:10%;
-
-
 }
 
 .btn-color{
