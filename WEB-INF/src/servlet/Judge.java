@@ -27,11 +27,11 @@ public class Judge extends HttpServlet {
 
 		if(result) {
 			RequestDispatcher dispatcher =
-			request.getRequestDispatcher("/WEB-INF/win.jsp");
+			request.getRequestDispatcher("/view/win.jsp");
 			dispatcher.forward(request, response);
 		}else {
 			RequestDispatcher dispatcher =
-			request.getRequestDispatcher("/WEB-INF/lose.jsp");
+			request.getRequestDispatcher("/view/lose.jsp");
 			dispatcher.forward(request, response);
 		}
 

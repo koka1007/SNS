@@ -1,0 +1,47 @@
+body {
+    background: black;
+}
+
+.header_size{
+    background: black;
+    margin: 0 0 0 90px;
+}
+
+.header_size image{
+    height:30px;
+}
+
+.footer_setting{
+    background: dimgray;
+}
+
+.body-margin{
+    margin: 0 0 30px 0;
+}
+
+.menu{
+    margin: 0 0 0 630px;
+}
+
+.btn-color{
+    color: red;
+    margin: 13px 0 0 0;
+}
+
+
+.layer {
+  color: black;
+  -webkit-transition: -webkit-transform .4s;
+  transition: -webkit-transform .4s;
+  transition: transform .4s;
+  transition: transform .4s, -webkit-transform .4s;
+  -webkit-transform: perspective(50px) scale(1) translateX(0) rotateY(0);
+          transform: perspective(50px) scale(1) translateX(0) rotateY(0);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.header_size .home:hover{
+  -webkit-transform: perspective(50px) scale(1) translateX(-16.66%) rotateY(30deg);
+          transform: perspective(50px) scale(1) translateX(-16.66%) rotateY(30deg);
+}
