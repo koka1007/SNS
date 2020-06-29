@@ -3,8 +3,144 @@
     xmlns="http://java.sun.com/xml/ns/javaee"
     xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-    version="2.5">
+    id="WebApp_ID" version="2.5">
 
+<!-- 2020/6/25 サーブレット登録 -->
+	<!-- (開始)servletパッケージのサーブレット登録 -->
+		<!-- b_result : BattleResult(バトル結果判定) -->
+			<servlet>
+				<servlet-name>b_result</servlet-name>
+				<servlet-class>servlet.BattleResult</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>b_result</servlet-name>
+				<url-pattern>/b_result</url-pattern>
+			</servlet-mapping>
+
+		<!-- main : Main.java(バトル画面) -->
+			<servlet>
+				<servlet-name>main</servlet-name>
+				<servlet-class>servlet.Main</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>main</servlet-name>
+				<url-pattern>/main</url-pattern>
+			</servlet-mapping>
+
+		<!-- name : Name.java(名前を取得登録する画面) -->
+			<servlet>
+				<servlet-name>name</servlet-name>
+				<servlet-class>servlet.Name</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>name</servlet-name>
+				<url-pattern>/name</url-pattern>
+			</servlet-mapping>
+
+		<!-- winner : Winner.java (勝利画面) -->
+			<servlet>
+				<servlet-name>winner</servlet-name>
+				<servlet-class>servlet.winner</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>winner</servlet-name>
+				<url-pattern>/winner</url-pattern>
+			</servlet-mapping>
+
+		<!-- judge : Judge.java (勝ち負け判定画面) -->
+			<servlet>
+				<servlet-name>judge</servlet-name>
+				<servlet-class>servlet.Judge</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>judge</servlet-name>
+				<url-pattern>/judge</url-pattern>
+			</servlet-mapping>
+
+		<!-- ranking : Ranking.java (ランキング表示画面) -->
+			<servlet>
+				<servlet-name>ranking</servlet-name>
+				<servlet-class>servlet.Ranking</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>ranking</servlet-name>
+				<url-pattern>/ranking</url-pattern>
+			</servlet-mapping>
+
+	<!-- (終了)servletパッケージのサーブレット登録 -->
+
+
+
+
+	<!-- (開始)beansパッケージのサーブレット登録 -->
+		<!-- n_beans : nameBeans(名前用のbeans) -->
+			<servlet>
+				<servlet-name>n_beans</servlet-name>
+				<servlet-class>model.nameBeans</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>n_beans</servlet-name>
+				<url-pattern>/n_beans</url-pattern>
+			</servlet-mapping>
+	<!-- (終了)beansパッケージのサーブレット登録 -->
+
+
+
+
+	<!-- (開始)modelパッケージのサーブレット登録 -->
+		<!-- odai : Odai.java(ボケ突っ込み取得等) -->
+			<servlet>
+				<servlet-name>odai</servlet-name>
+				<servlet-class>model.Odai</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>odai</servlet-name>
+				<url-pattern>/odai</url-pattern>
+			</servlet-mapping>
+
+		<!-- r_ranking : RegistRanking(ランキングに登録) -->
+			<servlet>
+				<servlet-name>r_ranking</servlet-name>
+				<servlet-class>model.RegistRanking</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>r_ranking</servlet-name>
+				<url-pattern>/r_ranking</url-pattern>
+			</servlet-mapping>
+
+		<!-- s_ranking : ShowRanking(ランキング表示) -->
+			<servlet>
+				<servlet-name>s_ranking</servlet-name>
+				<servlet-class>model.ShowRanking</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>s_ranking</servlet-name>
+				<url-pattern>/s_ranking</url-pattern>
+			</servlet-mapping>
+	<!-- (終了)modelパッケージのサーブレット登録 -->
+
+
+	<!-- (開始)DAOパッケージのサーブレット登録 -->
+		<!-- manzaidao : ManzaiDAO.java(ボケ突っ込み取得等) -->
+			<servlet>
+				<servlet-name>manzaiDAO</servlet-name>
+				<servlet-class>dao.ManzaiDAO</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>manzaiDAO</servlet-name>
+				<url-pattern>/manzaidao</url-pattern>
+			</servlet-mapping>
+
+		<!-- rankingdao : RankingDAO.java(ランキングデータベースよりデータ取得) -->
+			<servlet>
+				<servlet-name>rankingDAO</servlet-name>
+				<servlet-class>dao.RankingDAO</servlet-class>
+			</servlet>
+			<servlet-mapping>
+				<servlet-name>rankingDAO</servlet-name>
+				<url-pattern>/rankingdao</url-pattern>
+			</servlet-mapping>
+	<!-- (開始)modelパッケージのサーブレット登録 -->
 
 
 </web-app>

@@ -27,7 +27,7 @@ public class Winner extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher =
-				request.getRequestDispatcher("/WEB-INF/ranking.jsp");
+				request.getRequestDispatcher("/view/ranking.jsp");
 				dispatcher.forward(request, response);
 	}
 
