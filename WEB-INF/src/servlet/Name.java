@@ -29,7 +29,8 @@ public class Name extends HttpServlet {
 			throws ServletException, IOException {
 
 		//リクエストパラメータの取得
-		request.setCharacterEncoding("Windows-31j");
+		//(2020/07/01)Windows-jからUTF-8に変更
+		request.setCharacterEncoding("UTF-8");
 		String registName = request.getParameter("name");
 
 		//RegistNameインスタンス（ユーザー情報）の生成（コンストラクタで名前を格納）

@@ -20,7 +20,8 @@ public class Main extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータの取得
-		request.setCharacterEncoding("Windows-31j");
+		//(2020/07/01)Windows-jからUTF-8に変更
+		request.setCharacterEncoding("UTF-8");
 		String style = request.getParameter("janken");
 
 		//JudgeLogicの呼び出し
