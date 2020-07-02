@@ -2,12 +2,12 @@ package beans;
 
 import java.io.Serializable;
 
-public class RegistName implements Serializable {
+public class RegistNameBean implements Serializable {
 	private String name;
 
 
-	public RegistName() {}
-	public RegistName(String registName) {
+	public RegistNameBean() {}
+	public RegistNameBean(String registName) {
 		this.name = registName;
 	}
 

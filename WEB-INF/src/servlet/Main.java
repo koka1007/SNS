@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Point;
+import beans.PointBean;
 import model.BattleLogic;
 
 @WebServlet("/Main")
@@ -30,12 +30,12 @@ public class Main extends HttpServlet {
 
 		//pointインスタンス（ポイント合計情報）の生成
 		HttpSession session = request.getSession();
-		Point prepoint = (Point)session.getAttribute("point");
+		PointBean prepoint = (PointBean)session.getAttribute("point");
 		//前回までのポイントの合計と今回のポイントを足す
 		int totalpoint = prepoint.getPoint() + point;
 		//前回までのカウントに1を足す
 		int count = prepoint.getCount()+1;
-		Point poi = new Point(totalpoint,count);
+		PointBean poi = new PointBean(totalpoint,count);
 
 		//セッションスコープにpointbeansを入れる
 		session.setAttribute("point", poi);

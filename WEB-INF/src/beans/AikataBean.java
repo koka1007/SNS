@@ -2,12 +2,12 @@ package beans;
 
 import java.io.Serializable;
 
-public class Aikata implements Serializable {
+public class AikataBean implements Serializable {
 	private int number;
 
 
-	public Aikata() {}
-	public Aikata(int number) {
+	public AikataBean() {}
+	public AikataBean(int number) {
 		this.number = number;
 
 	}
