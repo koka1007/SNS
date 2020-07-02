@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page import = "java.util.*" %>
+<%@ page import = "dbmanager.*" %>
+<%@ page import = "beans.*" %>
+<%@ page import = "dao.*" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -28,7 +33,21 @@
 			<!-- canvas終了 -->
 
 			<font color="white">
-				ranking
+
+		<%
+			List<RankingBean> customerList = (List<RankingBean>)request.getAttribute("customerList");
+			for(int i = 0; i < customerList.size(); i++){
+				RankingBean cbean = customerList.get(i);
+		%>
+
+			<tr>
+				<th><%= cbean.getRno() %></th>
+				<th><%= cbean.getRname() %></th>
+				<th><%= cbean.getScore() %></th>
+			</tr>
+		<%
+			}
+		%>
 			</font>
 
 		</center><br>
