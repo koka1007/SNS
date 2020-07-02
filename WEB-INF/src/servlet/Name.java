@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Aikata;
+import beans.PartnerBean;
 import beans.Point;
 import beans.RegistName;
+import dao.PartnerDAO;
 import model.Boke;
 
 public class Name extends HttpServlet {
@@ -51,14 +54,22 @@ public class Name extends HttpServlet {
 		int aikataNumber = boke.aikata_select();
 
 		//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
-		Aikata aikata = new Aikata(aikataNumber);
-		session.setAttribute("aikata", aikata);
+//		Aikata aikata = new Aikata(aikataNumber);
+//		session.setAttribute("aikata", aikata);
 
 
-		//main.jspにフォワード
-		RequestDispatcher dispatcher =
-		request.getRequestDispatcher("/view/main.jsp");
-		dispatcher.forward(request, response);
+
+			try {
+				List<PartnerBean> PartnerList = PartnerDAO.getCustomerList(aikataNumber);
+				session.setAttribute("partnerList", PartnerList);
+				//main.jspにフォワード
+				RequestDispatcher dispatcher =
+				request.getRequestDispatcher("/view/main.jsp");
+				dispatcher.forward(request, response);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
 	}
 
 }

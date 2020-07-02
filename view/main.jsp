@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="beans.RegistName" %>
-<%@page import="beans.Point"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "dbmanager.*" %>
+<%@ page import = "beans.*" %>
+<%@ page import = "dao.*" %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -33,13 +37,20 @@
 
 			<font color="white">
 				<%
-					RegistName registName = (RegistName)session.getAttribute("rname");
-					Point point = (Point)session.getAttribute("point");
-	 			%><br>
+			List<PartnerBean> partnerList = (List<PartnerBean>)request.getAttribute("partnerList");
+			for(int i = 0; i < partnerList.size(); i++){
+				PartnerBean pbean = partnerList.get(i);
+		%>
 
-				<%= registName.getName() %>
-				<%= point.getPoint() %>
-
+			<tr>
+				<th><%= pbean.getPid() %></th>
+				<th><%= pbean.getPname() %></th>
+				<th><%= pbean.getBid() %></th>
+				<th><%= pbean.getAid() %></th>
+			</tr>
+		<%
+			}
+		%>
 				<form action="<%= request.getContextPath() %>/main"method="post">
 					グー：<input type="radio" name="janken"value="0"><br>
 					チョキ：<input type="radio" name="janken"value="1"><br>
