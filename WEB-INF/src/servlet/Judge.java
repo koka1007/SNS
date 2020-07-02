@@ -20,11 +20,15 @@ public class Judge extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		Point prepoint = (Point)session.getAttribute("point");
-		ResultJudgeLogic rjl = new ResultJudgeLogic();
-		boolean result = rjl.judge(prepoint.getPoint());
 
+		//Pointから得点を受け取り合格基準を達成しているか判定する。
+		HttpSession session = request.getSession();
+		//(2020/07/02)変数名がprepointだと変なのでresultPointに変更。
+		Point resultPoint = (Point)session.getAttribute("point");
+		ResultJudgeLogic rjl = new ResultJudgeLogic();
+		boolean result = rjl.judge(resultPoint.getPoint());
+
+		//勝ちならtrue負けならfalseをResultJudgeLogic.judgeから受け取っている
 		if(result) {
 			RequestDispatcher dispatcher =
 			request.getRequestDispatcher("/view/win.jsp");
@@ -34,11 +38,6 @@ public class Judge extends HttpServlet {
 			request.getRequestDispatcher("/view/lose.jsp");
 			dispatcher.forward(request, response);
 		}
-
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	}
 
