@@ -24,29 +24,31 @@ public class Main extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String style = request.getParameter("janken");
 
-		//JudgeLogicの呼び出し
-		BattleLogic jl = new BattleLogic();
-		 int point = jl.execution(style);
+		//BattleLogicの呼び出し(2020/07/02)変数がjlだったのでblに変更
+		BattleLogic bl = new BattleLogic();
+		 int point = bl.execution(style);
 
 		//pointインスタンス（ポイント合計情報）の生成
 		HttpSession session = request.getSession();
 		Point prepoint = (Point)session.getAttribute("point");
+		//前回までのポイントの合計と今回のポイントを足す
 		int totalpoint = prepoint.getPoint() + point;
+		//前回までのカウントに1を足す
 		int count = prepoint.getCount()+1;
 		Point poi = new Point(totalpoint,count);
 
 		//セッションスコープにpointbeansを入れる
-
 		session.setAttribute("point", poi);
 
 
 
 		if(prepoint.getCount()<2) {
-		//エントリー結果画面にフォワード
-		RequestDispatcher dispatcher =
-		request.getRequestDispatcher("/view/main.jsp");
-		dispatcher.forward(request, response);
+		//main.jspにフォワード
+			RequestDispatcher dispatcher =
+			request.getRequestDispatcher("/view/main.jsp");
+			dispatcher.forward(request, response);
 		}else {
+			//result.jspにフォワード
 			RequestDispatcher dispatcher =
 			request.getRequestDispatcher("/view/result.jsp");
 			dispatcher.forward(request, response);
