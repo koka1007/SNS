@@ -43,11 +43,12 @@ public class Main extends HttpServlet {
 
 
 		if(prepoint.getCount()<2) {
-		//エントリー結果画面にフォワード
-		RequestDispatcher dispatcher =
-		request.getRequestDispatcher("/view/main.jsp");
-		dispatcher.forward(request, response);
+		//main.jspにフォワード
+			RequestDispatcher dispatcher =
+			request.getRequestDispatcher("/view/main.jsp");
+			dispatcher.forward(request, response);
 		}else {
+			//result.jspにフォワード
 			RequestDispatcher dispatcher =
 			request.getRequestDispatcher("/view/result.jsp");
 			dispatcher.forward(request, response);

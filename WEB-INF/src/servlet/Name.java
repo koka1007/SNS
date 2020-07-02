@@ -40,7 +40,7 @@ public class Name extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("rname", rname);
 
-		//ここでポイントのビーンズを作っておく
+		//ここでポイントのbeansを作っておく
 		Point poi = new Point(0,0);
 		session.setAttribute("point", poi);
 
@@ -48,14 +48,14 @@ public class Name extends HttpServlet {
 		 ここでは数字しか返さないがMainで数字によって発言に変化を
 		 持たせる処理を行う。ここでは1,2,3のどれかが返ってくる*/
 		Boke boke = new Boke();
-		int aikataNumber = boke.choice();
+		int aikataNumber = boke.aikata_select();
 
 		//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
 		Aikata aikata = new Aikata(aikataNumber);
 		session.setAttribute("aikata", aikata);
 
 
-		//エントリー結果画面にフォワード
+		//main.jspにフォワード
 		RequestDispatcher dispatcher =
 		request.getRequestDispatcher("/view/main.jsp");
 		dispatcher.forward(request, response);
