@@ -1,9 +1,9 @@
-package beans;
+package beansmapping;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dbmanager.ResultSetBeanMapping;
+import beans.RankingBean;
 
 public class RankingBeanMapping implements ResultSetBeanMapping<RankingBean>{
 

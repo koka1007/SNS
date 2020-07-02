@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import beans.RankingBean;
-import beans.RankingBeanMapping;
+import beansmapping.RankingBeanMapping;
 import dbmanager.DBManager;
 ;
 

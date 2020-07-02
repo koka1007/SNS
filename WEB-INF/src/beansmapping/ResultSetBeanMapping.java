@@ -1,4 +1,4 @@
-package dbmanager;
+package beansmapping;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

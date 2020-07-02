@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import beansmapping.ResultSetBeanMapping;
+
 public class DBManager {
 
 	//DBの種類指定
