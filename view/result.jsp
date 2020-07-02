@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="beans.Point"%>
+<%@page import="beans.PointBean"%>
 
 <!DOCTYPE html>
 <html>
@@ -30,8 +30,8 @@
 
 			<font color="white">
 				<%
-					Point point = (Point) session.getAttribute("point");
-					int resultPoint = point.getPoint();
+					PointBean point = (PointBean) session.getAttribute("point");
+							int resultPoint = point.getPoint();
 				%><br>
 
 				<%=point.getPoint()%>

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Aikata;
-import beans.Point;
-import beans.RegistName;
+import beans.AikataBean;
+import beans.PointBean;
+import beans.RegistNameBean;
 import model.Boke;
 
 public class Name extends HttpServlet {
@@ -34,14 +34,14 @@ public class Name extends HttpServlet {
 		String registName = request.getParameter("name");
 
 		//RegistNameインスタンス（ユーザー情報）の生成（コンストラクタで名前を格納）
-		RegistName rname = new RegistName(registName);
+		RegistNameBean rname = new RegistNameBean(registName);
 
 		//セッションスコープにNamebeansを入れる
 		HttpSession session = request.getSession();
 		session.setAttribute("rname", rname);
 
 		//ここでポイントのbeansを作っておく
-		Point poi = new Point(0,0);
+		PointBean poi = new PointBean(0,0);
 		session.setAttribute("point", poi);
 
 		/*ボケ役を呼ぶ（三人から一人ランダムで選ぶ）
@@ -51,7 +51,7 @@ public class Name extends HttpServlet {
 		int aikataNumber = boke.aikata_select();
 
 		//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
-		Aikata aikata = new Aikata(aikataNumber);
+		AikataBean aikata = new AikataBean(aikataNumber);
 		session.setAttribute("aikata", aikata);
 
 

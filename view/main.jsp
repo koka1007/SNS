@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="beans.RegistName" %>
-<%@page import="beans.Point"%>
+<%@page import="beans.RegistNameBean" %>
+<%@page import="beans.PointBean"%>
 
 <!DOCTYPE html>
 <html>
@@ -33,9 +33,9 @@
 
 			<font color="white">
 				<%
-					RegistName registName = (RegistName)session.getAttribute("rname");
-					Point point = (Point)session.getAttribute("point");
-	 			%><br>
+					RegistNameBean registName = (RegistNameBean)session.getAttribute("rname");
+									PointBean point = (PointBean)session.getAttribute("point");
+				%><br>
 
 				<%= registName.getName() %>
 				<%= point.getPoint() %>
