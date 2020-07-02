@@ -37,17 +37,18 @@
 
 			<font color="white">
 				<%
-			List<PartnerBean> partnerList = (List<PartnerBean>)request.getAttribute("partnerList");
+			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
 			for(int i = 0; i < partnerList.size(); i++){
 				PartnerBean pbean = partnerList.get(i);
 		%>
-
+	<br>
 			<tr>
 				<th><%= pbean.getPid() %></th>
 				<th><%= pbean.getPname() %></th>
 				<th><%= pbean.getBid() %></th>
 				<th><%= pbean.getAid() %></th>
 			</tr>
+	 <br>
 		<%
 			}
 		%>
