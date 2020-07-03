@@ -28,6 +28,7 @@
 
 
 		<!-- メイン画面開始 -->
+		<!-- 20200703 加納 centerタグ変更-->
 		<div style="text-align: center">
 			<!-- canvasの設定開始 -->
 				<script type="text/javascript">canvas_func();</script><br>
