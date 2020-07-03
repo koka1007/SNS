@@ -24,6 +24,7 @@ public class RankingDAO {
 	}
 
 
+	//2020/7/3 加納 getCustomerList() → getLankingList()に変更
 	//sql文でデータベースからクエリ内容を取得
 	public static List<RankingBean> getRankingList() throws SQLException{
 		String sql = RANKING_ALL_SELECT;
