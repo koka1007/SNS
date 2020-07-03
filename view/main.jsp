@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="beans.RegistNameBean" %>
-<%@page import="beans.PointBean"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "dbmanager.*" %>
+<%@ page import = "beans.*" %>
+<%@ page import = "dao.*" %>
+<%@ page import = "beansmapping.*" %>
+
 
 <!DOCTYPE html>
 <html>
@@ -32,13 +36,29 @@
 
 
 			<font color="white">
-				<%
-					RegistNameBean registName = (RegistNameBean)session.getAttribute("rname");
-									PointBean point = (PointBean)session.getAttribute("point");
-				%><br>
 
-				<%= registName.getName() %>
-				<%= point.getPoint() %>
+			<!--以下確認のため記述、ボケ・ツッコミデータベース連携後削除-->
+
+			<%
+				List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+					for(int i = 0; i < partnerList.size(); i++){
+					PartnerBean pbean = partnerList.get(i);
+			%>
+			<br>
+
+			<tr>
+				<th><%= pbean.getPid() %></th>
+				<th><%= pbean.getPname() %></th>
+				<th><%= pbean.getBid() %></th>
+				<th><%= pbean.getAid() %></th>
+			</tr>
+	 		<br>
+			<%
+				}
+			%>
+
+			<!-- 以上まで削除 -->
+
 
 				<form action="<%= request.getContextPath() %>/main"method="post">
 					グー：<input type="radio" name="janken"value="0"><br>
