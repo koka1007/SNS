@@ -2,9 +2,13 @@ package beans;
 
 public class RankingBean {
 
+	//ランキングナンバー(Column名:RNO)
 	private String rno;
+	//ランキング用ネーム(Column名:RNAME)
 	private String rname;
+	//漫才の特典(Column名:SCORE)
 	private int score;
+
 
 	public RankingBean() {}
 

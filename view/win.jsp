@@ -22,16 +22,17 @@
 
 
 		<!-- メイン画面開始 -->
-		<center>
+		<!-- 20200703 加納 centerタグ変更-->
+		<div style="text-align: center">
 			<!-- canvas開始 -->
 				<script type="text/javascript">canvas_func();</script><br>
 			<!-- canvas終了 -->
 
 			<font color="white">
-				<p>win</p>
-				<p><a href="<%= request.getContextPath() %>/Winner">ランキング登録</a></p>
+				win<br>
+				<a href="<%= request.getContextPath() %>/Winner">ランキング登録</a><br><br>
 			</font>
-		</center>
+		</div>
 		<!-- メイン画面終了 -->
 
 

@@ -17,23 +17,24 @@ import dao.RankingDAO;
 
 @WebServlet("/Winner")
 public class Winner extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
+	static final String RANKING_URL = "/view/ranking.jsp";
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String forwardURL = null;
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		try {
-			List<RankingBean> customerList = RankingDAO.getCustomerList();
-			request.setAttribute("customerList", customerList);
-			forwardURL = "/view/ranking.jsp";
+			//rankingテーブルよりランキング情報取得
+			List<RankingBean> rankingList = RankingDAO.getRankingList();
+			request.setAttribute("rankingList", rankingList);
 
-			RequestDispatcher dispatcher =
-				//ranking.jspに移動
-				request.getRequestDispatcher(forwardURL);
-				dispatcher.forward(request, response);
+			//ranking.jspに移動
+			RequestDispatcher dispatcher =request.getRequestDispatcher(RANKING_URL);
+			dispatcher.forward(request, response);
+
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
-			System.out.println(e);
 		}
 	}
 }
