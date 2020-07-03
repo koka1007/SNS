@@ -4,6 +4,7 @@
 <%@ page import = "dbmanager.*" %>
 <%@ page import = "beans.*" %>
 <%@ page import = "dao.*" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -27,30 +28,29 @@
 
 
 		<!-- メイン画面開始 -->
-		<center>
-			<!-- canvas開始 -->
+		<div style="text-align: center">
+			<!-- canvasの設定開始 -->
 				<script type="text/javascript">canvas_func();</script><br>
-			<!-- canvas終了 -->
+			<!-- canvas中のテキスト設定 -->
+				<script type="text/javascript">var canvas = document.getElementById("canvas");</script>
+				<script type="text/javascript">var ctx = canvas.getContext("2d");</script>
+				<script type="text/javascript">ctx.font = "40px Arial";</script>
+			<!-- canvasの設定終了 -->
 
-			<font color="white">
 
-		<%
-			List<RankingBean> customerList = (List<RankingBean>)request.getAttribute("customerList");
-			for(int i = 0; i < customerList.size(); i++){
-				RankingBean cbean = customerList.get(i);
-		%>
+			<!-- canvas内にランキング表示! -->
+			<%
+				List<RankingBean> RankingList = (List<RankingBean>)request.getAttribute("rankingList");
+				for(int i = 0; i < RankingList.size(); i++){
+					RankingBean rbean = RankingList.get(i);	%>
 
-			<tr>
-				<th><%= cbean.getRno() %></th>
-				<th><%= cbean.getRname() %></th>
-				<th><%= cbean.getScore() %></th>
-			</tr>
-		<%
-			}
-		%>
-			</font>
-
-		</center><br>
+					<script type="text/javascript">
+						ctx.strokeText( <%= rbean.getRno()   %> ,10,40);
+						ctx.strokeText("<%= rbean.getRname() %>",40,40);
+						ctx.strokeText( <%= rbean.getScore() %> ,155,40);
+					</script>
+			<% } %>
+		</div><br>
 		<!-- メイン画面終了 -->
 
 

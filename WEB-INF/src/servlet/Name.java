@@ -57,7 +57,7 @@ public class Name extends HttpServlet {
 			try {
 
 				//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
-				List<PartnerBean> PartnerList = PartnerDAO.getCustomerList(aikataNumber);
+				List<PartnerBean> PartnerList = PartnerDAO.getPartnerList(aikataNumber);
 				session.setAttribute("partnerList", PartnerList);
 
 				//main.jspにフォワード

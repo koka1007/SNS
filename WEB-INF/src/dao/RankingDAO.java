@@ -25,7 +25,7 @@ public class RankingDAO {
 
 
 	//sql文でデータベースからクエリ内容を取得
-	public static List<RankingBean> getCustomerList() throws SQLException{
+	public static List<RankingBean> getRankingList() throws SQLException{
 		String sql = RANKING_ALL_SELECT;
 		return DBManager.findAll(sql, new RankingBeanMapping());
 	}

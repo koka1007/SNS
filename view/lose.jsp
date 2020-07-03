@@ -22,17 +22,17 @@
 
 
 		<!-- メイン画面開始 -->
-		<center>
+		<div style="text-align: center">
 			<!-- canvas開始 -->
 				<script type="text/javascript">canvas_func();</script>
 			<!-- canvas終了 -->
 
 
 			<font color="white">
-				<p>lose</p>
-				<p><a href="<%= request.getContextPath() %>/name">TOPへ</a></p>
+				lose<br>
+				<a href="<%= request.getContextPath() %>/name">TOPへ</a>
 			</font>
-		</center><br>
+		</div><br>
 		<!-- メイン画面終了 -->
 
 

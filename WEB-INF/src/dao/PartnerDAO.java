@@ -15,7 +15,7 @@ public class PartnerDAO {
 
 
 //	引数のIDで相方テーブルからクエリ内容を取り出す
-	public static List<PartnerBean> getCustomerList(int aikata) throws SQLException{
+	public static List<PartnerBean> getPartnerList(int aikata) throws SQLException{
 		String sql = PARTNER_ALL_SELECT +"'"+aikata+"'";
 		return DBManager.findAll(sql, new PartnerBeanMapping());
 	}

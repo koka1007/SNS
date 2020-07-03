@@ -9,7 +9,7 @@ function common_link(){
 		document.write(html);
 }
 
-//canvasの設定
+//canvasのサイズ等設定
 function canvas_func(){
 	var html = "";
 		html += '<canvas id="canvas" width="600px" height="480px" style="background-color:white;">';
@@ -17,6 +17,14 @@ function canvas_func(){
 		html += '</canvas>';
 		document.write(html);
 }
+
+//テキストを使えるようにする
+function text_setCanvas(){
+		var canvas = document.getElementById("canvas");
+		var ctx = canvas.getContext("2d");
+		return ctx;
+}
+
 
 //ヘッダー定義
 function header(){
