@@ -36,8 +36,17 @@ public class Name extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String registName = request.getParameter("name");
 
+		//名前の入力がなかった場合”名無田”を名前にする
+		if(registName.equals(null)||registName.equals("")) {
+			registName="名無田";
+		}else {
+
+		}
+
 		//RegistNameインスタンス（ユーザー情報）の生成（コンストラクタで名前を格納）
 		RegistNameBean rname = new RegistNameBean(registName);
+
+
 
 		//セッションスコープにNamebeansを入れる
 		HttpSession session = request.getSession();
