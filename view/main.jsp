@@ -39,6 +39,7 @@
 
 
 
+
 			<!--以下確認のため記述、ボケ・ツッコミデータベース連携後削除-->
 
 			<%
@@ -47,6 +48,7 @@
 					PartnerBean pbean = partnerList.get(i);
 			%>
 			<br>
+
 			<tr>
 				<th><%= pbean.getPid() %></th>
 				<th><%= pbean.getPname() %></th>
@@ -59,8 +61,6 @@
 			%>
 
 			<!-- 以上まで削除 -->
-
-
 
 				<form action="<%= request.getContextPath() %>/main"method="post">
 					グー：<input type="radio" name="janken"value="0"><br>
