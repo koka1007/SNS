@@ -38,7 +38,7 @@ public class Name extends HttpServlet {
 
 		//名前の入力がなかった場合”名無田”を名前にする
 		if(registName.equals(null)||registName.equals("")) {
-			registName="名無田";
+			registName="無名駄未知子";
 		}else {
 
 		}
