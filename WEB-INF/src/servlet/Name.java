@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.AikataBean;
+import beans.PartnerBean;
 import beans.PointBean;
 import beans.RegistNameBean;
+import dao.PartnerDAO;
 import model.Boke;
 
 public class Name extends HttpServlet {
@@ -50,15 +53,26 @@ public class Name extends HttpServlet {
 		Boke boke = new Boke();
 		int aikataNumber = boke.aikata_select();
 
-		//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
-		AikataBean aikata = new AikataBean(aikataNumber);
-		session.setAttribute("aikata", aikata);
+
+			try {
+
+				//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
+				List<PartnerBean> PartnerList = PartnerDAO.getCustomerList(aikataNumber);
+				session.setAttribute("partnerList", PartnerList);
+
+				//main.jspにフォワード
+				RequestDispatcher dispatcher =
+				request.getRequestDispatcher("/view/main.jsp");
+				dispatcher.forward(request, response);
+
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+
+			//	以下ボケ取得処理
 
 
-		//main.jspにフォワード
-		RequestDispatcher dispatcher =
-		request.getRequestDispatcher("/view/main.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }
