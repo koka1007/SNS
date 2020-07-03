@@ -10,18 +10,11 @@ import dbmanager.DBManager;
 
 public class PartnerDAO {
 
+//	相方選択のsql文
 	public static final String PARTNER_ALL_SELECT = "SELECT * FROM PARTNER WHERE PID =";
 
-//	//クエリ内容の追加
-//	public static int insert(RankingBean cbean) throws SQLException{
-//		String sql = "INSERT INTO CUSTOMER" +
-//					 "(NO,NAME,MONEY) VALUES(" +
-//					 "'" + cbean.getRno() + "'," +
-//					 "'" + cbean.getRname() + "'," +
-//					 cbean.getScore() + ")";
-//		return DBManager.simpleUpdate(sql);
-//	}
 
+//	引数のIDで相方テーブルからクエリ内容を取り出す
 	public static List<PartnerBean> getCustomerList(int aikata) throws SQLException{
 		String sql = PARTNER_ALL_SELECT +"'"+aikata+"'";
 		return DBManager.findAll(sql, new PartnerBeanMapping());

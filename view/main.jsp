@@ -36,22 +36,32 @@
 
 
 			<font color="white">
-				<%
-			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
-			for(int i = 0; i < partnerList.size(); i++){
-				PartnerBean pbean = partnerList.get(i);
-		%>
-	<br>
+
+
+
+			<!--以下確認のため記述、ボケ・ツッコミデータベース連携後削除-->
+
+			<%
+				List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+					for(int i = 0; i < partnerList.size(); i++){
+					PartnerBean pbean = partnerList.get(i);
+			%>
+			<br>
 			<tr>
 				<th><%= pbean.getPid() %></th>
 				<th><%= pbean.getPname() %></th>
 				<th><%= pbean.getBid() %></th>
 				<th><%= pbean.getAid() %></th>
 			</tr>
-	 <br>
-		<%
-			}
-		%>
+	 		<br>
+			<%
+				}
+			%>
+
+			<!-- 以上まで削除 -->
+
+
+
 				<form action="<%= request.getContextPath() %>/main"method="post">
 					グー：<input type="radio" name="janken"value="0"><br>
 					チョキ：<input type="radio" name="janken"value="1"><br>

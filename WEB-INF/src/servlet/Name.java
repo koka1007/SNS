@@ -53,23 +53,26 @@ public class Name extends HttpServlet {
 		Boke boke = new Boke();
 		int aikataNumber = boke.aikata_select();
 
-		//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
-//		Aikata aikata = new Aikata(aikataNumber);
-//		session.setAttribute("aikata", aikata);
-
-
 
 			try {
+
+				//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
 				List<PartnerBean> PartnerList = PartnerDAO.getCustomerList(aikataNumber);
 				session.setAttribute("partnerList", PartnerList);
+
 				//main.jspにフォワード
 				RequestDispatcher dispatcher =
 				request.getRequestDispatcher("/view/main.jsp");
 				dispatcher.forward(request, response);
+
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
 			}
+
+			//	以下ボケ取得処理
+
+
 	}
 
 }
