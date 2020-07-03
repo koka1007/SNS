@@ -46,12 +46,14 @@
 					PartnerBean pbean = partnerList.get(i);
 			%>
 			<br>
-
+<% RegistNameBean registName = (RegistNameBean)session.getAttribute("rname");
+		PointBean point = (PointBean)session.getAttribute("point");%>
 			<tr>
 				<th><%= pbean.getPid() %></th>
 				<th><%= pbean.getPname() %></th>
 				<th><%= pbean.getBid() %></th>
 				<th><%= pbean.getAid() %></th>
+				<th><%= registName.getName() %></th>
 			</tr>
 	 		<br>
 			<%
