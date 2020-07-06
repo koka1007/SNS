@@ -45,6 +45,7 @@
 					for(int i = 0; i < partnerList.size(); i++){
 					PartnerBean pbean = partnerList.get(i);
 			%>
+
 			<br>
 <% RegistNameBean registName = (RegistNameBean)session.getAttribute("rname");
 		PointBean point = (PointBean)session.getAttribute("point");%>
@@ -56,6 +57,21 @@
 				<th><%= registName.getName() %></th>
 			</tr>
 	 		<br>
+	 		<%
+				}
+			%>
+			<%
+				List<BokeBean> bokeList = (List<BokeBean>)session.getAttribute("bokeList");
+					for(int i = 0; i < bokeList.size(); i++){
+					BokeBean bbean = bokeList.get(i);
+			%>
+	 		<tr>
+				<th><%=bbean.getBid()%></th>
+				<th><%=bbean.getBcontext()%></th>
+				<th><%=bbean.getHint()%></th>
+				<th><%=bbean.getBattri()%></th>
+				<th><%=bbean.getBscore()%></th>
+			</tr>
 			<%
 				}
 			%>
