@@ -11,10 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.AnsBean;
 import beans.BokeBean;
 import beans.PartnerBean;
 import beans.PointBean;
 import beans.RegistNameBean;
+import dao.AnsDAO;
 import dao.BokeDAO;
 import dao.PartnerDAO;
 import model.Boke;
@@ -46,8 +48,6 @@ public class Name extends HttpServlet {
 		//RegistNameインスタンス（ユーザー情報）の生成（コンストラクタで名前を格納）
 		RegistNameBean rname = new RegistNameBean(registName);
 
-
-
 		//セッションスコープにNamebeansを入れる
 		HttpSession session = request.getSession();
 		session.setAttribute("rname", rname);
@@ -62,14 +62,11 @@ public class Name extends HttpServlet {
 		Boke boke = new Boke();
 		int aikataNumber = boke.aikata_select();
 
-
 			try {
 
 				//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
 				List<PartnerBean> PartnerList = PartnerDAO.getPartnerList(aikataNumber);
 				session.setAttribute("partnerList", PartnerList);
-
-
 
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
@@ -87,11 +84,6 @@ public class Name extends HttpServlet {
 				List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid());
 				session.setAttribute("bokeList", bokeList);
 
-
-				RequestDispatcher dispatcher =
-					//main.jspに移動
-					request.getRequestDispatcher("/view/main.jsp");
-					dispatcher.forward(request, response);
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
@@ -99,6 +91,25 @@ public class Name extends HttpServlet {
 			}
 
 //			以下ツッコミ取得処理
+
+			try {
+
+				List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+				PartnerBean pbean = partnerList.get(0);
+				//Aidを入れてAnswerDAOのgetAnsListにわたす
+				List<AnsBean> AnsList = AnsDAO.getAnsList(pbean.getAid());
+				session.setAttribute("ansList", AnsList);
+
+				String forward = "/view/main.jsp";
+				RequestDispatcher dispatcher =
+				//main.jspに移動
+				request.getRequestDispatcher(forward);
+				dispatcher.forward(request, response);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+				System.out.println(e);
+			}
 
 	}
 

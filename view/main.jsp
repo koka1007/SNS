@@ -76,6 +76,22 @@
 				}
 			%>
 
+			<%
+				List<AnsBean> ansList = (List<AnsBean>)session.getAttribute("ansList");
+					for(int i = 0; i < ansList.size(); i++){
+					AnsBean abean = ansList.get(i);
+			%>
+			<tr>
+				<th><%=abean.getAid()%></th>
+				<th><%=abean.getSanswer()%></th>
+				<th><%=abean.getNanswer()%></th>
+				<th><%=abean.getTanswer()%></th>
+				<th><%=abean.getAscore()%></th>
+			</tr>
+			<%
+				}
+			%>
+
 			<!-- 以上まで削除 -->
 
 
