@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.BokeBean;
 import beans.PartnerBean;
 import beans.PointBean;
 import beans.RegistNameBean;
+import dao.BokeDAO;
 import dao.PartnerDAO;
 import model.Boke;
 
@@ -39,8 +41,6 @@ public class Name extends HttpServlet {
 		//名前の入力がなかった場合”名無田”を名前にする
 		if(registName.equals(null)||registName.equals("")) {
 			registName="無名駄未知子";
-		}else {
-
 		}
 
 		//RegistNameインスタンス（ユーザー情報）の生成（コンストラクタで名前を格納）
@@ -69,10 +69,7 @@ public class Name extends HttpServlet {
 				List<PartnerBean> PartnerList = PartnerDAO.getPartnerList(aikataNumber);
 				session.setAttribute("partnerList", PartnerList);
 
-				//main.jspにフォワード
-				RequestDispatcher dispatcher =
-				request.getRequestDispatcher("/view/main.jsp");
-				dispatcher.forward(request, response);
+
 
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
@@ -81,6 +78,27 @@ public class Name extends HttpServlet {
 
 			//	以下ボケ取得処理
 
+
+			try {
+
+				List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+				PartnerBean pbean = partnerList.get(0);
+				//Bidを入れてBokeDAOのgetBokeListにわたす
+				List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid());
+				session.setAttribute("bokeList", bokeList);
+
+
+				RequestDispatcher dispatcher =
+					//main.jspに移動
+					request.getRequestDispatcher("/view/main.jsp");
+					dispatcher.forward(request, response);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+				System.out.println(e);
+			}
+
+//			以下ツッコミ取得処理
 
 	}
 
