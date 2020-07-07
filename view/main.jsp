@@ -55,6 +55,7 @@
 				<th><%= pbean.getBid() %></th>
 				<th><%= pbean.getAid() %></th>
 				<th><%= registName.getName() %></th>
+
 			</tr>
 	 		<br>
 	 		<%
@@ -83,24 +84,26 @@
 			%>
 			<tr>
 				<th><%=abean.getAid()%></th>
-				<th><%=abean.getSanswer()%></th>
-				<th><%=abean.getNanswer()%></th>
-				<th><%=abean.getTanswer()%></th>
+
 				<th><%=abean.getAscore()%></th>
+			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以下変更-->
+						<form action="<%= request.getContextPath() %>/main"method="Post">
+							<input type="radio" name="Answer" value="A" class="answer-check">1：
+								<th><%=abean.getSanswer()%></th><br>
+							<input type="radio" name="Answer" value="B" class="answer-check">2：
+								<th><%=abean.getNanswer()%></th><br>
+							<input type="radio" name="Answer" value="C" class="answer-check"  required>3：
+								<th><%=abean.getTanswer()%></th><br>
+							<input type="submit"value="突っ込め！！"name="ANSWER">
+						</form>
 			</tr>
+			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以上変更-->
 			<%
 				}
 			%>
 
 			<!-- 以上まで削除 -->
 
-
-				<form action="<%= request.getContextPath() %>/main"method="post">
-					グー：<input type="radio" name="janken"value="0"><br>
-					チョキ：<input type="radio" name="janken"value="1"><br>
-					パー：<input type="radio" name="janken"value="2"><br>
-					<input type="submit"value="pon">
-				</form>
 			</font>
 		</div><br>
 		<!-- メイン画面終了 -->

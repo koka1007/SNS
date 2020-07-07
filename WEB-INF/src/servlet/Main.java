@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.BokeBean;
 import beans.PointBean;
 import model.BattleLogic;
 
@@ -22,14 +24,23 @@ public class Main extends HttpServlet {
 		//リクエストパラメータの取得
 		//(2020/07/01)Windows-jからUTF-8に変更
 		request.setCharacterEncoding("UTF-8");
-		String style = request.getParameter("janken");
+		String style = request.getParameter("Answer");
+
+		//(2020/7/7)古門　セッションスコープからボケ属性取得　BattleLogicへ　以下追加
+
+		HttpSession session = request.getSession();
+		List<BokeBean> bokeList = ((List<BokeBean>)session.getAttribute("bokeList"));
+		BokeBean bbean = bokeList.get(0);
+
+		//(2020/7/7)古門　以上追加
+
 
 		//BattleLogicの呼び出し(2020/07/02)変数がjlだったのでblに変更
-		BattleLogic bl = new BattleLogic();
+		BattleLogic bl = new BattleLogic((int)bbean.getBattri());
 		 int point = bl.execution(style);
 
 		//pointインスタンス（ポイント合計情報）の生成
-		HttpSession session = request.getSession();
+
 		PointBean prepoint = (PointBean)session.getAttribute("point");
 		//前回までのポイントの合計と今回のポイントを足す
 		int totalpoint = prepoint.getPoint() + point;
