@@ -92,7 +92,7 @@
 								<th><%=abean.getSanswer()%></th><br>
 							<input type="radio" name="Answer" value="B" class="answer-check">2：
 								<th><%=abean.getNanswer()%></th><br>
-							<input type="radio" name="Answer" value="C" class="answer-check">3：
+							<input type="radio" name="Answer" value="C" class="answer-check"  required>3：
 								<th><%=abean.getTanswer()%></th><br>
 							<input type="submit"value="突っ込め！！"name="ANSWER">
 						</form>
