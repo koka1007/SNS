@@ -75,10 +75,11 @@ public class DBManager {
 	}
 
 
-	//update用のメソッド
+	//2020/7/7 simpleUpdate→simpleInsert に変更 加納
+	//insert用のメソッド
 	//指定されたクエリを発行する
 	//戻り値(int)は、クエリ実行数を取得
-	public static int simpleUpdate(String sql) throws SQLException{
+	public static int simpleInsert(String sql) throws SQLException{
 		Connection con 	= null;
 		Statement smt 	= null;
 
@@ -87,6 +88,45 @@ public class DBManager {
 			con = getConnection();
 			smt = con.createStatement();
 			return smt.executeUpdate(sql);
+		}
+		finally {
+			//Statementが存在する場合smtを閉じる
+			if(smt != null) {
+				try {
+					smt.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			//Connectionがつながっている場合conを閉じる
+			if(con != null) {
+				try {
+					con.close();
+				}catch(SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	//2020/7/7 DBに登録されている人数を取得する 加納
+	public static int Count(String sql) throws SQLException{
+		Connection con 	= null;
+		Statement smt 	= null;
+
+		int Count = 0;
+
+		//DBに接続しクエリを発行
+		try {
+			con = getConnection();
+			smt = con.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+
+			while(rs.next()) {
+				Count = rs.getInt("count");
+			}
+
+			return Count;
 		}
 		finally {
 			//Statementが存在する場合smtを閉じる
