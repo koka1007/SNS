@@ -19,6 +19,15 @@ import model.BattleLogic;
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+	//result.jspにフォワード
+	RequestDispatcher dispatcher =
+	request.getRequestDispatcher("/view/result.jsp");
+	dispatcher.forward(request, response);
+
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータの取得
@@ -59,10 +68,8 @@ public class Main extends HttpServlet {
 			request.getRequestDispatcher("/view/main.jsp");
 			dispatcher.forward(request, response);
 		}else {
-			//result.jspにフォワード
-			RequestDispatcher dispatcher =
-			request.getRequestDispatcher("/view/result.jsp");
-			dispatcher.forward(request, response);
+
+			response.sendRedirect("/shougekinosinjin/Main");
 
 		}
 	}
