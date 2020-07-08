@@ -19,6 +19,15 @@ import model.BattleLogic;
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+	//result.jspにフォワード
+	RequestDispatcher dispatcher =
+	request.getRequestDispatcher("/view/result.jsp");
+	dispatcher.forward(request, response);
+
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータの取得
@@ -58,12 +67,16 @@ public class Main extends HttpServlet {
 			RequestDispatcher dispatcher =
 			request.getRequestDispatcher("/view/main.jsp");
 			dispatcher.forward(request, response);
+		}else if(prepoint.getCount()==2){
+			//Main.javaのdoGetへフォワード（リロードの問題解決のため）
+			response.sendRedirect("/shougekinosinjin/Main");
 		}else {
-			//result.jspにフォワード
+			//戻るを押して選択し直すとポイントが増える問題をcountが3以上の場合はTOPに戻ることで解決
+			//しかし、意図せずループバグを起こしてしまう場合もあるので少し不親切かもしれない
+			//話あって挙動を調整したいとおもっています。
 			RequestDispatcher dispatcher =
-			request.getRequestDispatcher("/view/result.jsp");
+			request.getRequestDispatcher("/index.jsp");
 			dispatcher.forward(request, response);
-
 		}
 	}
 
