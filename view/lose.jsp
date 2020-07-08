@@ -8,6 +8,7 @@
 
 		<!-- JavaScript読み込み開始 -->
 			<script type="text/javascript" src="javascript/common/common.js"></script>
+			<script type="text/javascript" src="javascript/lose/lose.js"></script>
 		<!-- JavaScript読み込み終了 -->
 
 		<!-- CSS読み込み開始 -->
@@ -22,12 +23,14 @@
 
 
 		<!-- メイン画面開始 -->
-		<!-- 20200703 加納 centerタグ変更-->
+		<!-- 20200703 加納 centerタグ変更 -->
 		<div style="text-align: center">
 			<!-- canvas開始 -->
 				<script type="text/javascript">canvas_func();</script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 			<!-- canvas終了 -->
 
+			<script type="text/javascript">droptext();</script><br>
 
 			<font color="white">
 				lose<br>
