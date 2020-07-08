@@ -67,10 +67,16 @@ public class Main extends HttpServlet {
 			RequestDispatcher dispatcher =
 			request.getRequestDispatcher("/view/main.jsp");
 			dispatcher.forward(request, response);
-		}else {
-
+		}else if(prepoint.getCount()==2){
+			//Main.javaのdoGetへフォワード（リロードの問題解決のため）
 			response.sendRedirect("/shougekinosinjin/Main");
-
+		}else {
+			//戻るを押して選択し直すとポイントが増える問題をcountが3以上の場合はTOPに戻ることで解決
+			//しかし、意図せずループバグを起こしてしまう場合もあるので少し不親切かもしれない
+			//話あって挙動を調整したいとおもっています。
+			RequestDispatcher dispatcher =
+			request.getRequestDispatcher("/index.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 
