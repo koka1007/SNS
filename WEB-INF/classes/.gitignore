@@ -1,6 +1,6 @@
 /beans/
+/beansmapping/
+/dao/
+/dbmanager/
 /model/
 /servlet/
-/dbmanager/
-/dao/
-/beansmapping/

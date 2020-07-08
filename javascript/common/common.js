@@ -12,7 +12,7 @@ function common_link(){
 //canvasのサイズ等設定
 function canvas_func(){
 	var html = "";
-		html += '<canvas id="canvas" width="600px" height="480px" style="background-color:white;">';
+		html += '<canvas id="canvas" width="800px" height="600px" style="background-color:white;">';
 		html += 'このブラウザは HTML5 Canvas に対応していません。';
 		html += '</canvas>';
 		document.write(html);

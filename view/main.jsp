@@ -14,6 +14,9 @@
 
 		<!-- JavaScript読み込み開始 -->
 			<script type="text/javascript" src="javascript/common/common.js"></script>
+			<script type="text/javascript" src='http://cdn.rawgit.com/phi-jp/phina.js/v0.2.0/build/phina.js'></script>
+			<script type="text/javascript" src="javascript/main.js"></script>
+
 		<!-- JavaScript読み込み終了 -->
 
 		<!-- CSS読み込み開始 -->
@@ -33,6 +36,9 @@
 		<div style="text-align: center">
 			<!-- canvas開始 -->
 				<script type="text/javascript">canvas_func();</script>
+				<script type="text/javascript">text_setCanvas();</script>
+
+
 			<!-- canvas終了 -->
 
 
