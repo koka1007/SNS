@@ -54,10 +54,12 @@ body {
           transform: perspective(50px) scale(1) translateX(-16.66%) rotateY(30deg);
 }
 
-div{
-	position:relative;
-}
+/* 20200709 レイアウトが大きく崩れるため削除 加納
+	div{
+		position:relative;
+	}
 
-canvas{
-	position:absolute;
-}
+	canvas{
+		position:absolute;
+	}
+*/
