@@ -1,10 +1,21 @@
+//canvasのサイズ等設定
+function losecanvas(){
+	var html = "";
+		html += '<canvas id="canvas" width="600px" height="480px" style="background-color:white;">';
+		html += 'このブラウザは HTML5 Canvas に対応していません。';
+		html += '</canvas>';
+		document.write(html);
+}
+
 //テキストを使えるようにする
 function droptext(){
 	//画像をCanvasのサイズに合わせて等倍して画像をcanvasに貼り付ける.
 	var canvas_width = 600;
 	var canvas_hegiht = 480;
-	var max = 500;
-	var min = 0;
+
+	//20200709 ランダムに笑い声を出す必要がなくなったため削除 加納
+	//var max = 500;
+	//var min = 0;
 
 	//テキスト表示用
     var canvas = document.getElementById('canvas');
@@ -120,11 +131,14 @@ function droptext(){
         	this.y += this.vy;
         }
 
+
+        /*20200709 ランダムに数字を出す必要がなくなったため削除 加納
         //ランダムで数字を出す
 		this.random = function(){
 			this.rx = Math.floor( Math.random() * (max + 1 - min) ) + min ;
 			this.ry = Math.floor( Math.random() * (max + 1 - min) ) + min ;
 		}
+		*/
 
         // キャンバスの初期化
         this.clear = function() {

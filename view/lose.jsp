@@ -26,7 +26,7 @@
 		<!-- 20200703 加納 centerタグ変更-->
 		<div style="text-align: center">
 			<!-- canvas開始 -->
-				<script type="text/javascript">canvas_func();</script>
+				<script type="text/javascript">losecanvas();</script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 			<!-- canvas終了 -->
 
