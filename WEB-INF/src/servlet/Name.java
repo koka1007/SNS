@@ -62,16 +62,13 @@ public class Name extends HttpServlet {
 		Boke boke = new Boke();
 		int aikataNumber = boke.aikata_select();
 
-			try {
-
-				//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
-				List<PartnerBean> PartnerList = PartnerDAO.getPartnerList(aikataNumber);
-				session.setAttribute("partnerList", PartnerList);
-
-			} catch (SQLException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
+		try {
+			//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
+			List<PartnerBean> PartnerList = PartnerDAO.getPartnerList(aikataNumber);
+			session.setAttribute("partnerList", PartnerList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 			//	以下ボケ取得処理
 

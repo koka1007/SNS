@@ -61,7 +61,7 @@ function droptext(){
 			//文字表示
 			ctx.fillStyle = '#FB1711';
 		  	ctx.font = "90px serif";
-		  	ctx.fillText("お", (this.x + this.width), this.y-70);
+		  	ctx.fillText("お", (this.x + this.width), (this.y-70));
 		  	ctx.fillText("笑", (this.x + this.width), this.y+30);
 		  	ctx.fillText("失", this.x, this.y+20);
 		  	ctx.fillText("格", this.x, this.y + 120);
@@ -72,7 +72,7 @@ function droptext(){
 		//ワハハを表示する
 		this.Wahaha = function(){
 			var xpoint = 70;
-			var ypoint = 260;
+			var ypoint = 245;
 
 			//3回笑う！
 			for(var i = 0; i < 3; i++){
@@ -165,12 +165,22 @@ function droptext(){
             		down.backdark();
             		down.gameover();
             		down.Wahaha();
-            		clearInterval(start);
             	}, 1000);
+            	setTimeout(function() {
+        			btn_visible();
+        			clearInterval(start);
+        		}, 3000);
             }
         }, 100);
     }
-
     //数字の落下開始
     update();
 }
+
+//ボタンの表示を行う
+function btn_visible(){
+	document.getElementById("btn").style.visibility ="visible";
+}
+
+
+

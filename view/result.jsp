@@ -27,6 +27,7 @@
 		<div style="text-align: center">
 			<!-- canvas開始 -->
 				<script type="text/javascript">canvas_func();</script>
+				<script type="text/javascript" src = "javascript/result/result.js"></script>
 			<!-- canvas終了 -->
 
 			<font color="white">
