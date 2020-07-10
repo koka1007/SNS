@@ -18,14 +18,6 @@ function canvas_func(){
 		document.write(html);
 }
 
-//テキストを使えるようにする
-function text_setCanvas(){
-		var canvas = document.getElementById("canvas");
-		var ctx = canvas.getContext("2d");
-		return ctx;
-}
-
-
 //ヘッダー定義
 function header(){
     var html = "";
@@ -37,7 +29,6 @@ function header(){
         html += '<img src="img/common/left_hand.png" class="menu layer home" width = "160" height="60">';
         html += '</div>';
         html += '</div>';
-
         document.write(html);
 }
 
