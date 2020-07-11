@@ -1,0 +1,61 @@
+
+
+.parent {
+  position: static;
+
+}
+/* .child {
+	text-align:center;
+	color:black;
+
+	width:auto;
+	height:auto;
+	background-color:white;
+	position: absolute;
+	top: 50px;
+	right:50px;
+} */
+
+.child {
+  position:absolute;
+  margin: 2em 0 2em 40px;
+  top: 20%;
+  left:70%;
+  right:80px;
+  bottom: 50%
+  padding:10px;
+  background: #ffffff;
+  color:black;
+  border: solid 2px #51D7E9;/*線*/
+  border-radius: 30px;
+
+}
+
+.child:before {
+  content: "";
+  position: absolute;
+  left: -38px;
+  width: 13px;
+  height: 12px;
+  bottom: -45px;;
+  background: #ffffff;
+  border: solid 2px #51D7E9;/*線*/
+  border-radius: 50%;
+}
+
+.child:after {
+  content: "";
+  position: absolute;
+  left: -24px;
+  width: 20px;
+  height: 18px;
+  bottom: -20px;
+  background: #ffffff;
+  border: solid 2px #51D7E9;/*線*/
+  border-radius: 50%;
+
+}
+.child form {
+  margin: 10px;
+  padding: 10px;
+}
