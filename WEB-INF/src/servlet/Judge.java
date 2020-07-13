@@ -28,16 +28,21 @@ public class Judge extends HttpServlet {
 		ResultJudgeLogic rjl = new ResultJudgeLogic();
 		boolean result = rjl.judge(resultPoint.getPoint());
 
+
+		//省略の為RequestDispatcher dispatcher;を外に出す。
+		RequestDispatcher dispatcher;
 		//勝ちならtrue負けならfalseをResultJudgeLogic.judgeから受け取っている
 		if(result) {
-			RequestDispatcher dispatcher =
+			 dispatcher =
 			request.getRequestDispatcher("/view/win.jsp");
-			dispatcher.forward(request, response);
+			//dispatcher.forward(request, response);
+
 		}else {
-			RequestDispatcher dispatcher =
+			 dispatcher =
 			request.getRequestDispatcher("/view/lose.jsp");
-			dispatcher.forward(request, response);
+			//dispatcher.forward(request, response);
 		}
+		dispatcher.forward(request, response);
 
 	}
 

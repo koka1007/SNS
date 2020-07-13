@@ -7,6 +7,7 @@
 
 		<!-- JavaScript読み込み開始 -->
 			<script type="text/javascript" src="javascript/common/common.js"></script>
+			<script type="text/javascript" src="javascript/win/win.js"></script>
 		<!-- JavaScript読み込み終了 -->
 
 		<!-- CSS読み込み開始 -->
@@ -26,7 +27,10 @@
 		<div style="text-align: center">
 			<!-- canvas開始 -->
 				<script type="text/javascript">canvas_func();</script><br>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 			<!-- canvas終了 -->
+
+			<script type="text/javascript">droptext();</script><br>
 
 			<font color="white">
 				win<br>
