@@ -1,0 +1,14 @@
+#btn {
+	/* 非表示 */
+	visibility: hidden;
+}
+
+.parent {
+  position: relative;
+}
+
+.child {
+  position: absolute;
+  top: 400px;
+  left: 530px;
+}
