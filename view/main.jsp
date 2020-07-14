@@ -14,14 +14,12 @@
 
 		<!-- JavaScript読み込み開始 -->
 			<script type="text/javascript" src="javascript/common/common.js"></script>
-			<script type="text/javascript" src='http://cdn.rawgit.com/phi-jp/phina.js/v0.2.0/build/phina.js'></script>
 			<script type="text/javascript" src="javascript/main.js"></script>
 
 		<!-- JavaScript読み込み終了 -->
 
 		<!-- CSS読み込み開始 -->
 			<script type="text/javascript">common_link();</script>
-			<link rel="stylesheet" href="css/main.css">
 		<!-- CSS読み込み終了 -->
 
 
@@ -38,12 +36,20 @@
 		<!-- 20200703 加納 centerタグ変更-->
 <!--  -->
 		<div style="text-align: center"  class ="parent">
-			<!-- canvas開始 -->
+
+
+
+
+			<%-- <!-- canvas開始 -->
 				<script type="text/javascript">canvas_func();</script>
 				<script type="text/javascript">text_setCanvas();</script>
-			<!-- canvas終了 -->
+			canvas終了  --%>
 
-
+			<div id ="field">
+				<div id= "manzai-field">
+				<ul id= "chat-ul"></ul>
+				</div>
+			</div>
 
 
 			<font color="white">
@@ -77,12 +83,14 @@
 					for(int i = 0; i < bokeList.size(); i++){
 					BokeBean bbean = bokeList.get(i);
 			%>
+			<div class ="hint" style="text-align:left;">
+			<%=bbean.getHint()%>
+			</div>
 
-			<script type="text/javascript">drawCircleL("<%=bbean.getBcontext()%>");</script>
-	 		<tr>
+<%-- 			<script type="text/javascript">drawCircleL("<%=bbean.getBcontext()%>");</script>
+ --%>	 		<tr>
 				<th><%=bbean.getBid()%></th>
 				<th><%=bbean.getBcontext()%></th>
-				<th><%=bbean.getHint()%></th>
 				<th><%=bbean.getBattri()%></th>
 				<th><%=bbean.getBscore()%></th>
 			</tr>
@@ -96,7 +104,9 @@
 				for(int i = 0; i < AnsList.size(); i++){
 					AnsBean abean = AnsList.get(i);
 			%>
-					<script type="text/javascript">drawCircleR("<%=abean.getSanswer()%>");</script>
+			<%-- 	 <script type="text/javascript">drawCircleR("<%=abean.getSanswer()%>");</script>
+
+ --%>
 
 
 
@@ -106,46 +116,23 @@
 				<th><%=abean.getAscore()%></th>
 			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以下変更-->
 
-					<div class ="child" style="text-align:left;">
 
-
-						<form action=" <%= request.getContextPath() %>/main" method="Post" id="answer-check">
-							<input type="radio" name="Answer" value="A" class="answer-check">
+					<div class ="child" id ="input-field" style="text-align:left">
+						<form action=" <%= request.getContextPath() %>/main" method="Post" name='tukkomi' id="answer-check">
+							<input type="radio" name="Answer" value="A" id="answer-check">
 							1：
 								<%=abean.getSanswer()%><br>
-							<input type="radio" name="Answer" value="B" class="answer-check">
+							<input type="radio" name="Answer" value="B" id="answer-check">
 							2：
 								<%=abean.getNanswer()%><br>
-							<input type="radio" name="Answer" value="C" class="answer-check" required>
+							<input type="radio" name="Answer" value="C" id="answer-check" required>
 							3：
 								<%=abean.getTanswer()%><br>
-							<input type="submit"value="突っ込め！！"name="ANSWER">
+							<input type="submit" value="突っ込め！！" name="ANSWER" id= "chat-button" onclick= "btnFunc();">
 						</form>
-						<script type="text/javascript" id ="tukkomi">
-							var element = document.getElementById("answer-check") ;
-							var radioNodeList = element.Answer;
-							var a = radioNodeList.value;
-							var tukkomi="";
-							switch(a){
-							case A;
-								tukkomi = "<%=abean.getSanswer()%>"
-								break;
-							case B:
-								tukkomi = "<%=abean.getNanswer()%>"
-									break;
-							case C:
-								tukkomi = "<%=abean.getTanswer()%>"
-									break;
-							default:
-								return -1;
-							}
-						</script>
-
 					</div>
 
-				<script type="text/javascript" id ="tukkomi">
-				battle(tukkomi);
-				</script>
+
 
 
 			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以上変更-->

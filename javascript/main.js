@@ -1,5 +1,80 @@
-function battle(element){
+var tukkomiCount = 0;
 
+
+function output(val) {
+    // 一番下までスクロール
+    const field = document.getElementById('manzai-field');
+    field.scroll(0, field.scrollHeight - field.clientHeight);
+
+    const ul = document.getElementById('chat-ul');
+    const li = document.createElement('li');
+    // このdivにテキストを指定
+    const div = document.createElement('div');
+    div.textContent = val;
+    div.classList.add('chat-right');
+    li.classList.add('right');
+    ul.appendChild(li);
+    li.appendChild(div);
+}
+
+
+
+
+function btnFunc(){
+
+		let Answer = "";
+		const tukkomi1 = document.tukkomi.Answer;
+
+		for (let i = 0; i < tukkomi1.length; i++){
+			if(tukkomi1[i].checked){ //(color1[i].checked === true)と同じ
+				Answer = tukkomi1[i].value;
+				break;
+			}
+		}
+	    if (!tukkomi1.value) return false;
+
+
+
+
+		// FoemDataオブジェクトに要素セレクタを渡して宣言する
+		var formData = new FormData();
+
+		formData.append("Answer", tukkomi1.value);
+		// XHRの宣言
+		var XHR = new XMLHttpRequest();
+
+		// openメソッドにPOSTを指定して送信先のURLを指定します
+		XHR.open('GET', "./Main", true);
+
+
+		// sendメソッドにデータを渡して送信を実行する
+		XHR.send(formData);
+
+
+        XHR.onreadystatechange = function(){
+		if(XHR.readyState == 4 && XHR.status == 200){
+			// POST送信した結果を表示する
+			 setTimeout( ()=> {
+			        // 入力内を空欄にする
+			        // 一瞬の間でvalueを取得し、ロボットの"Hi!〇〇!"の返信に利用
+			        // 送信ボタンを押した瞬間にvalueを消したら、やまびこに失敗した
+				 	output(tukkomi1.value);
+				 	tukkomi1.value = '';
+			    	tukkomiCount++;
+			    	return false;
+			    }, 1);
+		}
+	};
+}
+
+
+
+
+
+
+function battle(element){
+				player();
+			    partner();
 				drawCircleR(element);
 }
 
@@ -191,7 +266,7 @@ function drawCircleL(bbean){
 	}
 
 	//吹き出し呼び出し
-	boke();
+
 
 
 	//テキスト設定
@@ -215,7 +290,7 @@ function drawCircleL(bbean){
 	              //縦枠のリサイズ
 	              if(limitedHeight < size){
 		        	  h1 += (size*1.6);
-		        	  boke();
+
 		          }
 	          }
 	          //改行
@@ -226,6 +301,7 @@ function drawCircleL(bbean){
 	  newLineTextList.push(lineText);
 	});
 
+	boke();
 	var lineLength = newLineTextList.length;
 
 
@@ -274,7 +350,7 @@ function drawCircleR(abean){
 		ctx.fill();
     }
 
-    answer();
+
 
 	//テキスト設定
 	var limitedWidth =w1-(padding * 2);
@@ -296,7 +372,7 @@ function drawCircleR(abean){
 	                lineText = character;
 	                if(limitedHeight < size){
 			        	  h1 += (size*1.6);
-			        	  answer();
+
 			          }
 	            }
 	            preLineText = lineText;
@@ -305,6 +381,7 @@ function drawCircleR(abean){
 	    newLineTextList.push(lineText);
 	});
 
+	answer();
 	var lineLength = newLineTextList.length;
 
 	ctx.fillStyle = "#000000";
@@ -312,7 +389,6 @@ function drawCircleR(abean){
 	    ctx.fillText(lineText,x1+padding,y1+padding+(size * (index + 1)));
 	});
 
-	ctx.save();
 }
 
 
