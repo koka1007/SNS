@@ -41,7 +41,9 @@ public class Name extends HttpServlet {
 		String registName = request.getParameter("name");
 
 		//名前の入力がなかった場合”名無田”を名前にする
-		if(registName.equals(null)||registName.equals("")) {
+		//.equals(null)はいかなる場合でもfalseを出す為書き直す20200713表田
+		//if(registName.equals(null)||registName.equals("")) {
+		if(registName == null||registName.equals("")) {
 			registName="無名駄未知子";
 		}
 
@@ -63,50 +65,53 @@ public class Name extends HttpServlet {
 		int aikataNumber = boke.aikata_select();
 
 		try {
+
 			//相方の1～3の番号をスコープに入れる。これで誰が相方かを決めることができる。
 			List<PartnerBean> PartnerList = PartnerDAO.getPartnerList(aikataNumber);
 			session.setAttribute("partnerList", PartnerList);
+
 		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
 
-			//	以下ボケ取得処理
+		//	以下ボケ取得処理
 
 
-			try {
+		try {
 
-				List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
-				PartnerBean pbean = partnerList.get(0);
-				//Bidを入れてBokeDAOのgetBokeListにわたす
-				List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid());
-				session.setAttribute("bokeList", bokeList);
+			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+			PartnerBean pbean = partnerList.get(0);
+			//Bidを入れてBokeDAOのgetBokeListにわたす
+			List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid());
+			session.setAttribute("bokeList", bokeList);
 
-			} catch (SQLException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-				System.out.println(e);
-			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			System.out.println(e);
+		}
 
-//			以下ツッコミ取得処理
+			//以下ツッコミ取得処理
 
-			try {
+		try {
 
-				List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
-				PartnerBean pbean = partnerList.get(0);
-				//Aidを入れてAnswerDAOのgetAnsListにわたす
-				List<AnsBean> AnsList = AnsDAO.getAnsList(pbean.getAid());
-				session.setAttribute("ansList", AnsList);
+			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+			PartnerBean pbean = partnerList.get(0);
+			//Aidを入れてAnswerDAOのgetAnsListにわたす
+			List<AnsBean> AnsList = AnsDAO.getAnsList(pbean.getAid());
+			session.setAttribute("ansList", AnsList);
 
-				String forward = "/view/main.jsp";
-				RequestDispatcher dispatcher =
-				//main.jspに移動
-				request.getRequestDispatcher(forward);
-				dispatcher.forward(request, response);
-			} catch (SQLException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-				System.out.println(e);
-			}
+			String forward = "/view/main.jsp";
+			RequestDispatcher dispatcher =
+			//main.jspに移動
+			request.getRequestDispatcher(forward);
+			dispatcher.forward(request, response);
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+			System.out.println(e);
+		}
 
 	}
 
