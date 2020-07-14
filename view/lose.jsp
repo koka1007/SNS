@@ -13,6 +13,7 @@
 
 		<!-- CSS読み込み開始 -->
 			<script type="text/javascript">common_link();</script>
+			<link rel="stylesheet" href="css/lose/lose.css">
 		<!-- CSS読み込み終了 -->
 	</head>
 
@@ -24,7 +25,7 @@
 
 		<!-- メイン画面開始 -->
 		<!-- 20200703 加納 centerタグ変更-->
-		<div style="text-align: center">
+		<div class="parent" style="text-align: center">
 			<!-- canvas開始 -->
 				<script type="text/javascript">losecanvas();</script>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -33,8 +34,9 @@
 			<script type="text/javascript">droptext();</script><br>
 
 			<font color="white">
-				lose<br>
-				<a href="<%= request.getContextPath() %>/name">TOPへ</a>
+				<a id = "btn" href="<%= request.getContextPath() %>/name">
+            		<button class="w3-button w3-xlarge w3-black btn-color child" type="button">漫才師を続ける!</button>
+        		</a>
 			</font>
 		</div><br>
 		<!-- メイン画面終了 -->
