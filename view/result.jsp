@@ -30,16 +30,17 @@
 				<script type="text/javascript" src = "javascript/result/result.js"></script>
 			<!-- canvas終了 -->
 
-			<font color="white">
-				<%
-					PointBean point = (PointBean) session.getAttribute("point");
-							int resultPoint = point.getPoint();
-				%><br>
+			<!-- データベースから情報取得 -->
+			<%
+				PointBean point = (PointBean) session.getAttribute("point");
+				int resultPoint = point.getPoint();
+			%><br>
 
-				<%=point.getPoint()%><br>
+			<!-- start(点数,次のパス)関数でキャンバス移動 -->
+			<script type="text/javascript">
+				start(<%=point.getPoint()%>,"<%= request.getContextPath() %>/Judge");
+			</script>
 
-				<a href="<%= request.getContextPath() %>/Judge">結果へ</a>
-			</font>
 		</div><br>
 		<!-- メイン画面終了 -->
 
