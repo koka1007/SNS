@@ -33,7 +33,7 @@ public class Main extends HttpServlet {
 		//リクエストパラメータの取得
 		//(2020/07/01)Windows-jからUTF-8に変更
 		request.setCharacterEncoding("UTF-8");
-		String style = (String)request.getParameter("Answer");
+		String style = request.getParameter("Answer");
 
 		//(2020/7/7)古門　セッションスコープからボケ属性取得　BattleLogicへ　以下追加
 
@@ -64,9 +64,11 @@ public class Main extends HttpServlet {
 
 		if(prepoint.getCount()<2) {
 		//main.jspにフォワード
+
 			RequestDispatcher dispatcher =
 			request.getRequestDispatcher("/view/main.jsp");
 			dispatcher.forward(request, response);
+
 		}else if(prepoint.getCount()==2){
 			//Main.javaのdoGetへフォワード（リロードの問題解決のため）
 			response.sendRedirect("/shougekinosinjin/Main");

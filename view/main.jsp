@@ -15,7 +15,7 @@
 		<!-- JavaScript読み込み開始 -->
 			<script type="text/javascript" src="javascript/common/common.js"></script>
 			<script type="text/javascript" src="javascript/main.js"></script>
-
+			 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 		<!-- JavaScript読み込み終了 -->
 
 		<!-- CSS読み込み開始 -->
@@ -45,10 +45,12 @@
 				<script type="text/javascript">text_setCanvas();</script>
 			canvas終了  --%>
 
+
 			<div id ="field">
 				<div id= "manzai-field">
-				<ul id= "chat-ul"></ul>
+					<ul id= "chat-ul"></ul>
 				</div>
+
 			</div>
 
 
@@ -71,17 +73,13 @@
 				<th><%= pbean.getBid() %></th>
 				<th><%= pbean.getAid() %></th>
 				<th><%= registName.getName() %></th>
-
 			</tr>
-
 	 		<br>
-	 		<%
-				}
-			%>
+
 			<%
 				List<BokeBean> bokeList = (List<BokeBean>)session.getAttribute("bokeList");
-					for(int i = 0; i < bokeList.size(); i++){
-					BokeBean bbean = bokeList.get(i);
+					for(int j = 0; j < bokeList.size(); j++){
+					BokeBean bbean = bokeList.get(j);
 			%>
 			<div class ="hint" style="text-align:left;">
 			<%=bbean.getHint()%>
@@ -94,21 +92,17 @@
 				<th><%=bbean.getBattri()%></th>
 				<th><%=bbean.getBscore()%></th>
 			</tr>
-			<%
-				}
-			%>
+
 
 
 			<%
 				List<AnsBean> AnsList = (List<AnsBean>)session.getAttribute("ansList");
-				for(int i = 0; i < AnsList.size(); i++){
-					AnsBean abean = AnsList.get(i);
+				for(int l = 0; l < AnsList.size(); l++){
+					AnsBean abean = AnsList.get(l);
 			%>
 			<%-- 	 <script type="text/javascript">drawCircleR("<%=abean.getSanswer()%>");</script>
 
  --%>
-
-
 
 
 				<th><%=abean.getAid()%></th>
@@ -118,7 +112,7 @@
 
 
 					<div class ="child" id ="input-field" style="text-align:left">
-						<form action=" <%= request.getContextPath() %>/main" method="Post" name='tukkomi' id="answer-check">
+						<form action=" <%= request.getContextPath() %>/main" method="Post" name='tukkomi' id="answer-check" >
 							<input type="radio" name="Answer" value="A" id="answer-check">
 							1：
 								<%=abean.getSanswer()%><br>
@@ -128,10 +122,13 @@
 							<input type="radio" name="Answer" value="C" id="answer-check" required>
 							3：
 								<%=abean.getTanswer()%><br>
-							<input type="submit" value="突っ込め！！" name="ANSWER" id= "chat-button" onclick= "btnFunc();">
+							<input type="submit" value="突っ込め！！" name="ANSWER" id= "chat-button" onclick="btnFunc()">
 						</form>
 					</div>
 
+
+			<script type="text/javascript">start("<%=pbean.getPname()%>","<%=registName.getName()%>","<%=bbean.getBcontext()%>");
+					 </script>
 
 
 
@@ -139,7 +136,12 @@
 			<%
 				}
 			%>
-
+			<%
+				}
+			%>
+			<%
+				}
+			%>
 			<!-- 以上まで削除 -->
 
 			</font>

@@ -1,3 +1,29 @@
+
+
+
+#aikata-img{
+	background-image:url(../img/main/aikata.png);  /* 画像のURLを指定       */
+    background-repeat:  no-repeat;                         /* 画像の繰り返しを指定  */
+    left:0;
+    bottom:0;
+    width:200px;                                            /* 横幅のサイズを指定    */
+    height:100pX;                                           /* 縦幅のサイズを指定    */
+    object-fit: cover;
+}
+
+
+#me-img{
+	background-image:url(../img/main/me.png);  /* 画像のURLを指定       */
+    background-repeat:  no-repeat;                         /* 画像の繰り返しを指定  */
+    right:0;
+    bottom:0;
+    width:200px;                                            /* 横幅のサイズを指定    */
+    height:100pX;                                           /* 縦幅のサイズを指定    */
+    object-fit: cover;
+}
+
+
+
 .parent {
   position: static;
 
@@ -19,6 +45,11 @@
   border-radius: 30px;
 
 }
+
+#input-field{
+		visibility: hidden;
+}
+
 
 .child:before {
   content: "";

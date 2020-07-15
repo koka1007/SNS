@@ -77,7 +77,7 @@ function update() {
 
     //画像と文字列を表示する
     render_image();
-    render_text();
+
 }
 
 //カーテンの制御を行う

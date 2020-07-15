@@ -1,7 +1,65 @@
-var tukkomiCount = 0;
+var talkCount = 0;
+
+function start(partner,me,boke,count){
 
 
-function output(val) {
+	switch(count){
+	case 0:
+		var talk1 = [
+		    'はい、どうも～',
+		    me+'です',
+		    partner+'です',
+		    'お願いします～',
+		    'ねえねえ、'+me+'くん',
+		    'なんだい'+partner+'さん',
+		    boke
+	    ];
+		break;
+	case 1:
+		var talk1 = [
+		    'はい、どうも～',
+		    me+'です',
+		    partner+'です',
+		    'お願いします～',
+		    'ねえねえ、'+me+'くん',
+		    'なんだい'+partner+'さん',
+		    boke
+	    ];
+
+
+	}
+
+
+var i =0;
+var talk = setInterval( ()=> {
+    if(i % 2 ==0){
+    	output(talk1[i],"partner");
+        i++;
+    }else if((i % 2 == 1)){
+    	output(talk1[i],"me");
+        i++;
+    }
+    if(i == talk1.length){
+    		showFormAnimation();
+    		clearInterval(talk);
+    }
+
+    talkCount++;
+}, 1000);
+}
+
+
+function showFormAnimation() {
+
+	document.getElementById("input-field").style.visibility ="visible";
+
+
+}
+
+
+
+
+function output(val,person) {
     // 一番下までスクロール
     const field = document.getElementById('manzai-field');
     field.scroll(0, field.scrollHeight - field.clientHeight);
@@ -11,10 +69,33 @@ function output(val) {
     // このdivにテキストを指定
     const div = document.createElement('div');
     div.textContent = val;
-    div.classList.add('chat-right');
-    li.classList.add('right');
-    ul.appendChild(li);
-    li.appendChild(div);
+    if(talkCount == 0){
+	    if(person =="me"){
+		    div.classList.add('chat-right');
+		    li.classList.add('right');
+		    ul.appendChild(li);
+		    li.appendChild(div);
+	    }else if(person == "partner"){
+			div.classList.add('chat-left');
+		    li.classList.add('left');
+		    ul.appendChild(li);
+		    li.appendChild(div);
+		}
+    }else{
+    	if(person =="me"){
+		    div.classList.add('chat-right');
+		    li.classList.add('right');
+		    ul.appendChild(li);
+		    li.appendChild(div);
+	    }else if(person == "partner"){
+			div.classList.add('chat-left');
+		    li.classList.add('left');
+		    ul.appendChild(li);
+		    li.appendChild(div);
+	    }
+    }
+
+
 }
 
 
@@ -26,51 +107,30 @@ function btnFunc(){
 		const tukkomi1 = document.tukkomi.Answer;
 
 		for (let i = 0; i < tukkomi1.length; i++){
-			if(tukkomi1[i].checked){ //(color1[i].checked === true)と同じ
+			if(tukkomi1[i].checked){ //tukkomi[i].checked === true)と同じ
 				Answer = tukkomi1[i].value;
 				break;
 			}
 		}
 	    if (!tukkomi1.value) return false;
 
-
-
-
-		// FoemDataオブジェクトに要素セレクタを渡して宣言する
-		var formData = new FormData();
-
-		formData.append("Answer", tukkomi1.value);
-		// XHRの宣言
-		var XHR = new XMLHttpRequest();
-
-		// openメソッドにPOSTを指定して送信先のURLを指定します
-		XHR.open('GET', "./Main", true);
-
-
-		// sendメソッドにデータを渡して送信を実行する
-		XHR.send(formData);
-
-
-        XHR.onreadystatechange = function(){
-		if(XHR.readyState == 4 && XHR.status == 200){
-			// POST送信した結果を表示する
 			 setTimeout( ()=> {
 			        // 入力内を空欄にする
 			        // 一瞬の間でvalueを取得し、ロボットの"Hi!〇〇!"の返信に利用
 			        // 送信ボタンを押した瞬間にvalueを消したら、やまびこに失敗した
 				 	output(tukkomi1.value);
 				 	tukkomi1.value = '';
-			    	tukkomiCount++;
-			    	return false;
+
+
 			    }, 1);
-		}
+
+
 	};
-}
 
 
 
 
-
+/*
 
 function battle(element){
 				player();
@@ -391,5 +451,5 @@ function drawCircleR(abean){
 
 }
 
-
+*/
 
