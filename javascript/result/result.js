@@ -77,7 +77,9 @@ function update() {
 
     //画像と文字列を表示する
     render_image();
-    render_text();
+
+    //2020/07/14 必要ない処理だったため削除 加納
+    //render_text();
 }
 
 //カーテンの制御を行う

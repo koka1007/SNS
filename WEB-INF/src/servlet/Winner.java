@@ -23,19 +23,26 @@ public class Winner extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	static final String RANKING_URL = "/view/ranking.jsp";
+	//static final String INDEX_URL = "index.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//2020/7/7 ランキングに登録できるように変更 加納
+		//2020/07/07 ランキングに登録できるように変更 加納
+		//2020/07/14 index.jspよりランキング画面に遷移できるよう変更 加納
 		try {
+			//セッションから前ページのURL取得
+			HttpSession session = request.getSession();
+			session.setAttribute("referer", request.getHeader("REFERER"));
+			String referer_url = (String)session.getAttribute("referer");
+
 			//データベースに登録されている人数を取得する
 			int rCount = RankingDAO.MaxNumber();
 
-			//データベースから人数を取得できた場合のみランキング登録する
-			if(rCount != -1) {
+			//データベースから人数を取得できたかつ、
+			//win.jspから画面遷移した場合にランキング登録を行う
+			if(rCount != -1 && referer_url.contains(RANKING_URL)) {
 				//セッションより名前とスコアを取得する
-				HttpSession session = request.getSession();
 				RegistNameBean rname = (RegistNameBean)session.getAttribute("rname");
 				PointBean score = (PointBean)session.getAttribute("point");
 
@@ -52,6 +59,7 @@ public class Winner extends HttpServlet {
 			RequestDispatcher dispatcher =request.getRequestDispatcher(RANKING_URL);
 			dispatcher.forward(request, response);
 
+		//
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
