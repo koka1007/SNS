@@ -43,7 +43,7 @@ public class Name extends HttpServlet {
 		//名前の入力がなかった場合”名無田”を名前にする
 		//.equals(null)はいかなる場合でもfalseを出す為書き直す20200713表田
 		//if(registName.equals(null)||registName.equals("")) {
-		if(registName == null||registName.equals("")) {
+		if(registName == null || registName.equals("")) {
 			registName="無名駄未知子";
 		}
 
