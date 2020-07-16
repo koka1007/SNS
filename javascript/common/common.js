@@ -21,7 +21,7 @@ function canvas_func(){
 //ヘッダー定義
 function header(){
     var html = "";
-        html += '<div class="w3-container ">';
+        html += '<div class="w3-container">';
         html += '<div class = "header_size">';
         html += '<a href = "index.jsp">';
         html += '<img src="img/common/title.png" class="img-fluid" width = "200" height="90">';
@@ -33,9 +33,11 @@ function header(){
 }
 
 //フッダー定義
+//2020/07/16 ページ拡大縮小によるフッターレイアウトの崩れ防止 加納
 function footer(){
     var html = "";
-        html += '<div class = "footer_setting">';
+    	html += '<br><br>';
+        html += '<div class = "footer_setting fixed-bottom">';
         html += '<div class="w3-container">';
         html += '<center>';
         html += '<p>Copyright (c) 笑撃の新人製作委員会.inc </p>';
