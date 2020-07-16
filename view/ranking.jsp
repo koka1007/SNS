@@ -13,6 +13,7 @@
 
 		<!-- JavaScript読み込み開始 -->
 			<script type="text/javascript" src="javascript/common/common.js"></script>
+
 		<!-- JavaScript読み込み終了 -->
 
 		<!-- CSS読み込み開始 -->
@@ -35,9 +36,11 @@
 			<!-- canvas中のテキスト設定 -->
 				<script type="text/javascript">var canvas = document.getElementById("canvas");</script>
 				<script type="text/javascript">var ctx = canvas.getContext("2d");</script>
-				<script type="text/javascript">ctx.font = "25px Arial";</script>
-			<!-- canvasの設定終了 -->
+				<script type="text/javascript">ctx.font = "25px AXIS";</script>
 
+			<!-- canvasの設定終了 -->
+			<script type="text/javascript" src="javascript/ranking/ranking.js"></script>
+			<script type="text/javascript">start();</script><br>
 
 			<!-- canvas内にランキング表示! -->
 			<!-- 2020/7/7 ランキング上位4～10位を右側に表示するように変更開始  加納 -->
@@ -47,33 +50,39 @@
 					RankingBean rbean = RankingList.get(i);
 			%>
 					<script type="text/javascript">
+					start = setInterval(function() {
 						var count  = <%= i  %>;
-						var width  = 300;
+						var width  = 460;
 
 						if(count <= 2){
-							var heigth = (100*(count + 1) + 50);
-							ctx.font = "40px Arial"
-							ctx.strokeText(count+1,20,heigth);
-							ctx.font = "25px Arial"
-							ctx.strokeText("<%= rbean.getRname() %>",50,heigth-5);
-							ctx.font = "40px Arial"
-							ctx.strokeText( <%= rbean.getScore() %> ,220,heigth);
+							var heigth = (130*(count + 1) -27);
+							ctx.font = "40px AXIS"
+							ctx.strokeText(count+1,50,heigth);
+							ctx.font = "25px AXIS"
+							ctx.strokeText("<%= rbean.getRname() %>",105,heigth-5);
+							ctx.font = "40px AXIS"
+							ctx.strokeText( <%= rbean.getScore() %> ,395,heigth);
 						}else{
-							var heigth = (55*(count + 1)-130);
-							ctx.font = "30px Arial";
-							ctx.strokeText(count+1,20+width,heigth);
-							ctx.font = "15px Arial";
-							ctx.strokeText("<%= rbean.getRname() %>",65+width,heigth-5);
-							ctx.font = "30px Arial";
-							ctx.strokeText( <%= rbean.getScore() %> ,230+width,heigth);
+							var heigth = (78*(count + 1)-230);
+							ctx.font = "30px AXIS";
+							ctx.strokeText(count+1,45+width,heigth);
+							ctx.font = "15px AXIS";
+							ctx.strokeText("<%= rbean.getRname() %>",85+width,heigth-5);
+							ctx.font = "30px AXIS";
+							ctx.strokeText( <%= rbean.getScore() %> ,265+width,heigth);
 						}
+					}, 100);
 					</script>
 			<%}%>
 			<!-- 2020/7/7 上位4～10位を右側に表示するように変更終了  加納 -->
 		</div><br>
 		<!-- メイン画面終了 -->
+		<div style="text-align: center">
+<font color="white">
 
-
+				<a href="<%= request.getContextPath() %>/name">TOPへ</a>
+			</font>
+		</div><br>
 		<!-- フッター部分スタート(function footer()呼び出し)-->
 			<script type="text/javascript">footer();</script>
 		<!-- フッター部分終了-->
