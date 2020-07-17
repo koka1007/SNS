@@ -82,8 +82,15 @@ public class Name extends HttpServlet {
 
 			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
 			PartnerBean pbean = partnerList.get(0);
+
 			//Bidを入れてBokeDAOのgetBokeListにわたす
 			List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid1(),pbean.getBid2(),pbean.getBid3());
+
+			//20200717 下記の処理でボケの中に名前を入れる 加納
+			for(int i = 0; i < bokeList.size(); i++) {
+				bokeList.get(i).setBcontext(use_name_boke((String)bokeList.get(i).getBcontext(),registName));
+			}
+
 			session.setAttribute("bokeList", bokeList);
 
 		} catch (SQLException e) {
@@ -115,14 +122,24 @@ public class Name extends HttpServlet {
 
 	}
 
-	private Object getBid3() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+	//2020/07/17 ボケに名前を使う! 加納
+	String use_name_boke(String bokeSTR,String name) {
 
-	private Object getBid2() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+		//Stringの宣言
+		String split[] 		= null;
+		String split1[] 	= null;
+		String str  		= null;
 
+		//ボケに名前を入れる
+		str = bokeSTR;
+
+		//指定した文字列が存在するか確認
+		if (str.contains("<%=registName.getName()%>"))
+		{
+			split	= str.split("<");
+			split1 	= split[1].split(">");
+			str 	= split[0] + name + split1[1];
+		}
+		return str;
+	}
 }
