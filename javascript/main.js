@@ -4,7 +4,7 @@ function start(partner,me,boke,count){
 
 
 	switch(count){
-	case 0:
+	case "0":
 		var talk1 = [
 		    'はい、どうも～',
 		    me+'です',
@@ -15,18 +15,32 @@ function start(partner,me,boke,count){
 		    boke
 	    ];
 		break;
-	case 1:
+	case "1":
 		var talk1 = [
-		    'はい、どうも～',
-		    me+'です',
-		    partner+'です',
-		    'お願いします～',
-		    'ねえねえ、'+me+'くん',
-		    'なんだい'+partner+'さん',
+		      'でもさいきんはコロナがすごいですよね。',
+		    'そうですよね。また増えてきてますもんね',
+		    '私もね自粛してました',
+		    'あ、えらい！',
+		    'スーパーも一人で行くんですよ',
+		    '人数制限もしてますもんね',
 		    boke
 	    ];
-
-
+		break;
+	case "2":
+		var talk1 =[
+			'やっているかいってね',
+			'いやいやあれはコロナ対策やし、フェイスガードやから',
+			'そうなんか、出会い頭のキス防止かと',
+			'欧米か！誰がおばちゃんと出会い頭キスすんねん',
+			'そういえばマスクも売ってないですもんね',
+			'そうですね、マスク買うのに行列できてましたからね',
+			'そういえば先頭の人がわ～わ～言うてましたわ',
+			'そりゃ迷惑な人ですね',
+			boke
+		];
+		break;
+	default:
+		break;
 	}
 
 
@@ -41,7 +55,8 @@ var talk = setInterval( ()=> {
     }
     if(i == talk1.length){
     		showFormAnimation();
-    		clearInterval(talk);
+    		talk1=[];
+			clearInterval(talk);
     }
 
     talkCount++;
@@ -52,11 +67,14 @@ var talk = setInterval( ()=> {
 function showFormAnimation() {
 
 	document.getElementById("input-field").style.visibility ="visible";
-
-
+	document.getElementById("hint").style.visibility ="visible";
 }
 
+function hideFormAnimation() {
 
+	document.getElementById("input-field").style.visibility ="hidden";
+	document.getElementById("hint").style.visibility ="hidden";
+}
 
 
 function output(val,person) {
@@ -70,7 +88,7 @@ function output(val,person) {
     const div = document.createElement('div');
     div.textContent = val;
     if(talkCount == 0){
-	    if(person =="me"){
+	    if(person == "me"){
 		    div.classList.add('chat-right');
 		    li.classList.add('right');
 		    ul.appendChild(li);
@@ -94,35 +112,151 @@ function output(val,person) {
 		    li.appendChild(div);
 	    }
     }
-
+	field.scroll(0, field.scrollHeight - field.clientHeight);
 
 }
 
 
 
 
-function btnFunc(){
+function btnFunc(abb,bcc,cdd,uke){
 
+		hideFormAnimation();
 		let Answer = "";
 		const tukkomi1 = document.tukkomi.Answer;
 
+		const div = document.getElementById('field');
 		for (let i = 0; i < tukkomi1.length; i++){
 			if(tukkomi1[i].checked){ //tukkomi[i].checked === true)と同じ
 				Answer = tukkomi1[i].value;
 				break;
 			}
 		}
-	    if (!tukkomi1.value) return false;
+
+		var gradColor = 0;
+			switch(uke){
+			case "1":
+				if(Answer == "A") {
+					gradColor = 1;
+				}else if(Answer == "B") {
+					gradColor = 2;
+				}else {
+					gradColor = 3;
+				}
+				break;
+
+			case "2":
+				if(Answer == "A") {
+					gradColor = 1;
+				}else if(Answer == "C") {
+					gradColor = 2;
+				}else {
+					gradColor = 3;
+				}
+				break;
+
+			case "3":
+				if(Answer == "B") {
+					gradColor = 1;
+				}else if(Answer == "A") {
+					gradColor = 2;
+				}else {
+					gradColor = 3;
+				}
+				break;
+
+
+			case "4":
+				if(Answer == "B") {
+					gradColor = 1;
+				}else if(Answer == "C") {
+					gradColor = 2;
+				}else {
+					gradColor = 3;
+				}
+				break;
+
+			case "5":
+				if(Answer == "C") {
+					gradColor = 1;
+				}else if(Answer == "A") {
+					gradColor = 2;
+				}else {
+					gradColor = 3;
+				}
+				break;
+
+			case "6":
+				if(Answer == "C") {
+					gradColor = 1;
+				}else if(Answer == "B") {
+					gradColor = 2;
+				}else {
+					gradColor = 3;
+				}
+				break;
+			default:
+				gradColor = 0;
+			}
+
+
+	    switch(Answer){
+	    case 'A':
+	    		Answer = abb;
+	    		break;
+	    case 'B':
+	    		Answer = bcc;
+	    		break;
+	    case 'C':
+	    		Answer = cdd;
+	    		break;
+	    default:
+	    		return false;
+			}
 
 			 setTimeout( ()=> {
 			        // 入力内を空欄にする
 			        // 一瞬の間でvalueを取得し、ロボットの"Hi!〇〇!"の返信に利用
 			        // 送信ボタンを押した瞬間にvalueを消したら、やまびこに失敗した
-				 	output(tukkomi1.value);
-				 	tukkomi1.value = '';
+				 	output(Answer,"me");
+			tukkomi1.value = '';
+			var gradCount = 0;
+			var grad = setInterval( ()=> {
+				switch(gradColor){
+				case 1:
+					div.classList.add('oouke');
+					setTimeout( ()=> {
+					div.classList.remove('oouke');
+					}, 700);
+					break;
+				case 2:
+					div.classList.add('yayauke');
+					setTimeout( ()=> {
+					div.classList.remove('yayauke');
+					}, 700);
+					break;
+				case 3:
+					div.classList.add('suberi');
+					setTimeout( ()=> {
+					div.classList.remove('suberi');
+					}, 700);
+					break;
+				default:
+					break;
+				}
+				gradCount++
+
+				if(gradCount == 2){
+					setTimeout( ()=> {
+						document.tukkomi.submit();
+					}, 1000);
+					clearInterval(grad);
+				}
+			}, 1000);
+				 	 }, 1);
 
 
-			    }, 1);
+		
 
 
 	};

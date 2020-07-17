@@ -34,7 +34,7 @@
 
 		<!-- メイン画面開始 -->
 		<!-- 20200703 加納 centerタグ変更-->
-<!--  -->
+
 		<div style="text-align: center"  class ="parent">
 
 
@@ -47,10 +47,11 @@
 
 
 			<div id ="field">
+			<div id ="combi">
 				<div id= "manzai-field">
 					<ul id= "chat-ul"></ul>
 				</div>
-
+			</div>
 			</div>
 
 
@@ -85,10 +86,6 @@
 					for(int j = 0; j < bokeList.size(); j++){
 					BokeBean bbean = bokeList.get(j);
 			%>
-			<div class ="hint" style="text-align:left;">
-			<%=bbean.getHint()%>
-			</div>
-
 
 	 		<tr>
 				<th><%=bbean.getBid1()%></th>
@@ -115,6 +112,7 @@
 				<th><%=abean.getAscore()%></th>
 			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以下変更-->
 
+					<div id ="hint"style="text-align:right"><%=bbean.getHint()%></div>
 
 					<div class ="child" id ="input-field" style="text-align:left">
 						<form action=" <%= request.getContextPath() %>/main" method="Post" name='tukkomi' id="answer-check" >
@@ -127,13 +125,14 @@
 							<input type="radio" name="Answer" value="C" id="answer-check" required>
 							3：
 								<%=abean.getTanswer()%><br>
-							<input type="submit" value="突っ込め！！" name="ANSWER" id= "chat-button" onclick="btnFunc()">
-						</form>
+							<input type="button" value="突っ込め！！" name="ANSWER" id= "chat-button"
+							onclick="btnFunc('<%=abean.getSanswer()%>','<%=abean.getNanswer()%>','<%=abean.getTanswer()%>','<%=bbean.getBattri()%>')">
+							</form>
 					</div>
 
 
-			<script type="text/javascript">start("<%=pbean.getPname()%>","<%=registName.getName()%>","<%=bbean.getBcontext()%>");
-					 </script>
+			<script type="text/javascript">start("<%=pbean.getPname()%>","<%=registName.getName()%>","<%=bbean.getBcontext()%>","<%=point.getCount()%>");
+			</script>
 
 
 
