@@ -12,8 +12,12 @@ public class PartnerBeanMapping implements ResultSetBeanMapping<PartnerBean>{
 		PartnerBean pbean = new PartnerBean();
 		pbean.setPid(rs.getInt("PID"));
 		pbean.setPname(rs.getString("PNAME"));
-		pbean.setBid(rs.getInt("BID"));
-		pbean.setAid(rs.getInt("AID"));
+		pbean.setBid1(rs.getInt("BID1"));
+		pbean.setBid2(rs.getInt("BID2"));
+		pbean.setBid3(rs.getInt("BID3"));
+		pbean.setAid1(rs.getInt("AID1"));
+		pbean.setAid2(rs.getInt("AID2"));
+		pbean.setAid3(rs.getInt("AID3"));
 
 		return pbean;
 	}

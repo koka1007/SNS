@@ -13,7 +13,7 @@ public class AnsBeanMapping implements ResultSetBeanMapping {
 
 		AnsBean abean = new AnsBean();
 
-		abean.setAid(rs.getInt("AID"));
+		abean.setAid1(rs.getInt("AID"));
 		abean.setSanswer(rs.getString("SANSWER"));
 		abean.setNanswer(rs.getString("NANSWER"));
 		abean.setTanswer(rs.getString("TANSWER"));

@@ -2,7 +2,9 @@ package beans;
 
 public class BokeBean {
 
-	private int bid;
+	private int bid1;
+	private int bid2;
+	private int bid3;
 	private String bcontext;
 	private String hint;
 	private int battri;
@@ -10,20 +12,40 @@ public class BokeBean {
 
 	public BokeBean() {}
 
-	public BokeBean(int bid,String bcontext,String hint,int battri,int bscore) {
-		this.bid=bid;
+	public BokeBean(int bid1,int bid2,int bid3,String bcontext,String hint,int battri,int bscore) {
+		this.bid1=bid1;
+		this.bid2=bid2;
+		this.bid3=bid3;
 		this.battri=battri;
 		this.hint=hint;
 		this.battri=battri;
 		this.bscore=bscore;
 	}
 
-	public int getBid() {
-		return bid;
+
+
+	public int getBid1() {
+		return bid1;
 	}
 
-	public void setBid(int bid) {
-		this.bid = bid;
+	public void setBid1(int bid1) {
+		this.bid1 = bid1;
+	}
+
+	public int getBid2() {
+		return bid2;
+	}
+
+	public void setBid2(int bid2) {
+		this.bid2 = bid2;
+	}
+
+	public int getBid3() {
+		return bid3;
+	}
+
+	public void setBid3(int bid3) {
+		this.bid3 = bid3;
 	}
 
 	public String getBcontext() {

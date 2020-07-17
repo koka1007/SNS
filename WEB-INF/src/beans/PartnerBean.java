@@ -4,8 +4,12 @@ public class PartnerBean {
 
 	private int pid;
 	private String pname;
-	private int bid;
-	private int aid;
+	private int bid1;
+	private int bid2;
+	private int bid3;
+	private int aid1;
+	private int aid2;
+	private int aid3;
 
 
 
@@ -13,11 +17,87 @@ public class PartnerBean {
 
 
 
-	public PartnerBean(int pid, String pname, int bid, int aid) {
+	public PartnerBean(int pid, String pname, int bid1,int bid2,int bid3, int aid1,int aid2,int aid3) {
 		this.pid = pid;
 		this.pname = pname;
-		this.bid = bid;
-		this.aid = aid;
+		this.bid1 = bid1;
+		this.bid2 = bid2;
+		this.bid3 = bid3;
+		this.aid1 = aid1;
+		this.aid2 = aid2;
+		this.aid3 = aid3;
+	}
+
+
+
+	public int getBid1() {
+		return bid1;
+	}
+
+
+
+	public void setBid1(int bid1) {
+		this.bid1 = bid1;
+	}
+
+
+
+	public int getBid2() {
+		return bid2;
+	}
+
+
+
+	public void setBid2(int bid2) {
+		this.bid2 = bid2;
+	}
+
+
+
+	public int getBid3() {
+		return bid3;
+	}
+
+
+
+	public void setBid3(int bid3) {
+		this.bid3 = bid3;
+	}
+
+
+
+	public int getAid1() {
+		return aid1;
+	}
+
+
+
+	public void setAid1(int aid1) {
+		this.aid1 = aid1;
+	}
+
+
+
+	public int getAid2() {
+		return aid2;
+	}
+
+
+
+	public void setAid2(int aid2) {
+		this.aid2 = aid2;
+	}
+
+
+
+	public int getAid3() {
+		return aid3;
+	}
+
+
+
+	public void setAid3(int aid3) {
+		this.aid3 = aid3;
 	}
 
 
@@ -43,33 +123,6 @@ public class PartnerBean {
 	public void setPname(String pname) {
 		this.pname = pname;
 	}
-
-
-
-	public int getBid() {
-		return bid;
-	}
-
-
-
-	public void setBid(int bid) {
-		this.bid = bid;
-	}
-
-
-
-	public int getAid() {
-		return aid;
-	}
-
-
-
-	public void setAid(int aid) {
-		this.aid = aid;
-	};
-
-
-
 
 
 }
