@@ -1,7 +1,9 @@
 package beans;
 
 public class AnsBean {
-	private int aid;
+	private int aid1;
+	private int aid2;
+	private int aid3;
 	private String sanswer;
 	private String nanswer;
 	private String tanswer;
@@ -9,8 +11,10 @@ public class AnsBean {
 
 	public AnsBean() {}
 
-	public AnsBean(int aid,String sanswer,String nanswer,String tanswer,int ascore) {
-		this.aid=aid;
+	public AnsBean(int aid1,int aid2,int aid3,String sanswer,String nanswer,String tanswer,int ascore) {
+		this.aid1=aid1;
+		this.aid2=aid2;
+		this.aid3=aid3;
 		this.sanswer=sanswer;
 		this.nanswer=nanswer;
 		this.tanswer=tanswer;
@@ -18,12 +22,30 @@ public class AnsBean {
 
 	}
 
-	public int getAid() {
-		return aid;
+
+
+	public int getAid1() {
+		return aid1;
 	}
 
-	public void setAid(int aid) {
-		this.aid = aid;
+	public void setAid1(int aid1) {
+		this.aid1 = aid1;
+	}
+
+	public int getAid2() {
+		return aid2;
+	}
+
+	public void setAid2(int aid2) {
+		this.aid2 = aid2;
+	}
+
+	public int getAid3() {
+		return aid3;
+	}
+
+	public void setAid3(int aid3) {
+		this.aid3 = aid3;
 	}
 
 	public String getSanswer() {

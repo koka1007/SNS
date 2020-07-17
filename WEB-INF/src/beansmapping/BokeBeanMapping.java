@@ -12,7 +12,7 @@ public class BokeBeanMapping implements ResultSetBeanMapping {
 
 			BokeBean bbean = new BokeBean();
 
-			bbean.setBid(rs.getInt("BID"));
+			bbean.setBid1(rs.getInt("BID"));
 			bbean.setBcontext(rs.getString("BCONTEXT"));
 			bbean.setHint(rs.getString("HINT"));
 			bbean.setBattri(rs.getInt("BATTRI"));
