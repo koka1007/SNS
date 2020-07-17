@@ -78,6 +78,8 @@ function update() {
     //画像と文字列を表示する
     render_image();
 
+    //2020/07/14 必要ない処理だったため削除 加納
+    //render_text();
 }
 
 //カーテンの制御を行う
@@ -85,18 +87,18 @@ function move_carten(){
     //カーテン閉める()
     if((0 < count) && (kartenOFF == true) && (hukidasi_arr.length <= (count - 1)) && resultOFF ==false){
         if(kartenX < 0){
-            kartenX += 2;
+            kartenX += 2.5;
         }
     }
     //カーテン一時停止
     if(kartenX == 0){
         setTimeout(function() {
             kartenOFF = false;
-        }, 1400);
+        }, 1000);
     }
     //カーテンを再び開ける
     if(kartenOFF == false){
-        kartenX -= 2
+        kartenX -= 2.5;
     }
 }
 
@@ -194,7 +196,7 @@ function move_hukidasi(F_ConbiX,F_SikaiX){
         		resultOFF = false;
         	}, 3000);
     	}else{
-        	ctx.drawImage(Asset.images['l_curtain'], (kartenX-60), 0);
+        	ctx.drawImage(Asset.images['l_curtain'], (kartenX-60), 2);
         	ctx.drawImage(Asset.images['r_curtain'], (400-kartenX),0);
     	}
     }

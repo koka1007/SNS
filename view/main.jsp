@@ -70,8 +70,12 @@
 			<tr>
 				<th><%= pbean.getPid() %></th>
 				<th><%= pbean.getPname() %></th>
-				<th><%= pbean.getBid() %></th>
-				<th><%= pbean.getAid() %></th>
+				<th><%= pbean.getBid1() %></th>
+				<th><%= pbean.getAid1() %></th>
+				<th><%= pbean.getBid2() %></th>
+				<th><%= pbean.getAid2() %></th>
+				<th><%= pbean.getBid3() %></th>
+				<th><%= pbean.getAid3() %></th>
 				<th><%= registName.getName() %></th>
 			</tr>
 	 		<br>
@@ -85,9 +89,11 @@
 			<%=bbean.getHint()%>
 			</div>
 
-<%-- 			<script type="text/javascript">drawCircleL("<%=bbean.getBcontext()%>");</script>
- --%>	 		<tr>
-				<th><%=bbean.getBid()%></th>
+
+	 		<tr>
+				<th><%=bbean.getBid1()%></th>
+				<th><%=bbean.getBid2()%></th>
+				<th><%=bbean.getBid3()%></th>
 				<th><%=bbean.getBcontext()%></th>
 				<th><%=bbean.getBattri()%></th>
 				<th><%=bbean.getBscore()%></th>
@@ -100,12 +106,11 @@
 				for(int l = 0; l < AnsList.size(); l++){
 					AnsBean abean = AnsList.get(l);
 			%>
-			<%-- 	 <script type="text/javascript">drawCircleR("<%=abean.getSanswer()%>");</script>
 
- --%>
-
-
-				<th><%=abean.getAid()%></th>
+			<tr>
+				<th><%=abean.getAid1()%></th>
+				<th><%=abean.getAid2()%></th>
+				<th><%=abean.getAid3()%></th>
 
 				<th><%=abean.getAscore()%></th>
 			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以下変更-->

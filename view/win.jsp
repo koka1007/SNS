@@ -30,6 +30,8 @@
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 			<!-- canvas終了 -->
 
+
+				<script type="text/javascript" src="javascript/win/kamihubuki.js"></script>
 			<script type="text/javascript">droptext();</script><br>
 
 			<font color="white">

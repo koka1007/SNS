@@ -22,26 +22,40 @@ import dao.RankingDAO;
 public class Winner extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	static final String RANKING_URL = "/view/ranking.jsp";
+	static final String RANKING_URL 	= "/view/ranking.jsp";
+	static final String INDEX_URL 	= "index.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//2020/7/7 ランキングに登録できるように変更 加納
+		//2020/07/07 ランキングに登録できるように変更 加納
+		//2020/07/14 index.jspよりランキング画面に遷移できるよう変更 加納
+		//2020/07/16 どの画面から飛んでもランキング登録できていなかったため変更 加納
 		try {
+			//セッションから前ページのURL取得
+			HttpSession session = request.getSession();
+			session.setAttribute("referer", request.getHeader("REFERER"));
+			String referer_url = (String)session.getAttribute("referer");
+
 			//データベースに登録されている人数を取得する
 			int rCount = RankingDAO.MaxNumber();
 
-			//データベースから人数を取得できた場合のみランキング登録する
-			if(rCount != -1) {
+			//2020/07/16 下記の通り変更 加納
+			//リロードによるデータの二重登録防止(win画面からのみ登録可能)
+			if(rCount != -1 && (false==referer_url.contains(INDEX_URL)) &&
+					session.getAttribute("rname") != null && session.getAttribute("point") != null) {
+
 				//セッションより名前とスコアを取得する
-				HttpSession session = request.getSession();
-				RegistNameBean rname = (RegistNameBean)session.getAttribute("rname");
-				PointBean score = (PointBean)session.getAttribute("point");
+				RegistNameBean rname 	= (RegistNameBean)session.getAttribute("rname");
+				PointBean score 		= (PointBean)session.getAttribute("point");
 
 				//受け取った情報をRankingテーブルに登録(nro,rname,score)
 				RankingBean rbean = new RankingBean(String.valueOf(rCount+1),rname.getName(),score.getPoint());
 				RankingDAO.insert(rbean);
+
+				//登録が出来たらセッションからポイントと名前を削除
+				session.removeAttribute("point");
+				session.removeAttribute("rname");
 			}
 
 			//Rankingテーブルからランキング情報取得

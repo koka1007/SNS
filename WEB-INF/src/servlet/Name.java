@@ -43,7 +43,7 @@ public class Name extends HttpServlet {
 		//名前の入力がなかった場合”名無田”を名前にする
 		//.equals(null)はいかなる場合でもfalseを出す為書き直す20200713表田
 		//if(registName.equals(null)||registName.equals("")) {
-		if(registName == null||registName.equals("")) {
+		if(registName == null || registName.equals("")) {
 			registName="無名駄未知子";
 		}
 
@@ -83,7 +83,7 @@ public class Name extends HttpServlet {
 			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
 			PartnerBean pbean = partnerList.get(0);
 			//Bidを入れてBokeDAOのgetBokeListにわたす
-			List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid());
+			List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid1(),pbean.getBid2(),pbean.getBid3());
 			session.setAttribute("bokeList", bokeList);
 
 		} catch (SQLException e) {
@@ -99,7 +99,7 @@ public class Name extends HttpServlet {
 			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
 			PartnerBean pbean = partnerList.get(0);
 			//Aidを入れてAnswerDAOのgetAnsListにわたす
-			List<AnsBean> AnsList = AnsDAO.getAnsList(pbean.getAid());
+			List<AnsBean> AnsList = AnsDAO.getAnsList(pbean.getAid1(),pbean.getAid2(),pbean.getAid3());
 			session.setAttribute("ansList", AnsList);
 
 			String forward = "/view/main.jsp";
@@ -113,6 +113,16 @@ public class Name extends HttpServlet {
 			System.out.println(e);
 		}
 
+	}
+
+	private Object getBid3() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
+
+	private Object getBid2() {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 
 }
