@@ -7,7 +7,7 @@
 		<title>rensyu</title>
 		<!-- JavaScript読み込み開始 -->
 			<script type="text/javascript" src="javascript/common/common.js"></script>
-			<script type="text/javascript" src="javascript/omake/omake.js"></script>
+			<script type="text/javascript" src="javascript/omake/javava.js"></script>
 		<!-- JavaScript読み込み終了 -->
 
 
