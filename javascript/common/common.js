@@ -6,6 +6,11 @@ function common_link(){
 		html += '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">';
 		html += '<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">';
 		html += '<link rel="stylesheet" href="css/common/index.css">';
+		document.write(html);
+}
+
+function main_link(){
+	var html = "";
 		html += '<link rel="stylesheet" href="css/main/main.css">';
 		document.write(html);
 }

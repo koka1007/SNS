@@ -19,6 +19,7 @@
 
 		<!-- CSS読み込み開始 -->
 			<script type="text/javascript">common_link();</script>
+			<script type="text/javascript">main_link();</script>
 		<!-- CSS読み込み終了 -->
 
 
