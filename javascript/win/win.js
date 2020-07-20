@@ -179,11 +179,20 @@ function droptext(){
         //文字が流れる処理
 
         start = setInterval(function() {
+        	down.human();
         	if(down.y>=300){
+        		down.clearhuman();
                 down.clear();
                 down.draw();
                 down.textmove();
                 down.flow_text();
+                down.clearhuman();
+        		down.human2();
+        		down.hukidasi();
+        		down.win_text1();
+        		down.win_text2();
+        		down.win_text3();
+        		down.win_text4();
 
 
                 if(down.texty >= 900){
@@ -193,23 +202,7 @@ function droptext(){
 
         }, 100);
 
-        //人の処理
 
-        start = setInterval(function() {
-        	down.human();
-
-        	if(down.y>=300){
-        		down.clearhuman();
-        		down.human2();
-        		down.hukidasi();
-        		down.win_text1();
-        		down.win_text2();
-        		down.win_text3();
-        		down.win_text4();
-
-        	}
-
-        }, 10);
 
     }
 
