@@ -12,6 +12,7 @@
 
 		<!-- CSS読み込み開始 -->
 			<script type="text/javascript">common_link();</script>
+			<link rel="stylesheet" href="css/index/index.css">
 		<!-- CSS読み込み終了 -->
 	</head>
 
@@ -21,29 +22,30 @@
 			<script type="text/javascript">header();</script>
 		<!-- ヘッダー部分終了 -->
 
-
 		<!-- メイン部分スタート -->
-			<div class = "body-margin">
-				<div style="text-align: center">
-					<img src="img/index/stage.jpg" alt="main" style="width:65%" height="470">
-					<div style="position:absolute; top:70%; left:37%">
-						<form class = "form-control-lg" action="<%= request.getContextPath() %>/name"method="post">
-							<input type="text" name="name" class="form-control-lg" placeholder="芸名を書き込め！"><br>
-							<button class="w3-button w3-xxlarge w3-red btn-color">Let's MANZAI!!</button>
-						</form>
-					</div>
-					<div>
-						<a href="<%= request.getContextPath() %>/Winner">
-							<button class="w3-button w3-xxlarge w3-red btn-color">ランキング</button>
-						</a>
+		<div style="text-align: center" class = "parent">
 
+			<!-- canvas開始 -->
+				<script type="text/javascript">canvas_func();</script>
+			<!-- canvas終了 -->
 
+			<!-- キャンバス内の動きを呼び出し開始 -->
+				<script type="text/javascript" src="javascript/index/index.js"></script>
+				<script type="text/javascript">start();</script>
+			<!-- キャンバス内の動きを呼び出し終了 -->
 
-					</div>
-					<a href="http://localhost:8080/shougekinosinjin/zenjitu.jsp">.</a>
-				</div>
-					<br>
-			</div>
+			<!--ボタン部分の設定  -->
+				<div class = "body-margin child form-control-lg">
+					<form action="<%= request.getContextPath() %>/name"method="post">
+						<input type="text" name="name" placeholder="芸名を書き込め！"><br>
+						<button class="w3-button w3-xlarge w3-red btn-color">　Let's MANZAI!　</button>
+					</form>
+					<a href="<%= request.getContextPath() %>/Winner">
+						<button class="w3-button w3-xlarge w3-red btn-color">　　ランキング　　</button>
+					</a>
+				</div><br>
+			<!--ボタン部分の設定  -->
+		</div>
 		<!-- メイン部分終了 -->
 
 
