@@ -27,7 +27,9 @@ function header(){
         html += '<a href = "index.jsp">';
         html += '<img src="img/common/title.png" class="img-fluid" width = "200" height="90">';
         html += '</a>';
+        html += '<a href="http://localhost:8080/shougekinosinjin/zenjitu.jsp">';
         html += '<img src="img/common/left_hand.png" class="menu layer home" width = "160" height="60">';
+        html += '</a>';
         html += '</div>';
         html += '</div>';
         document.write(html);
