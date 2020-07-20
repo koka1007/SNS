@@ -100,7 +100,7 @@
 
 
 			<%
-					for(int j = 0; j < bokeList.size(); j++){
+				for(int j = 0; j < bokeList.size(); j++){
 					BokeBean bbean = bokeList.get(j);
 
 					String hint = bbean.getHint();
@@ -139,28 +139,28 @@
 
 			<!-- 2020/7/20 古門　以下　ヒント吹き出しの追加 -->
 
-					<div id ="hint"style="text-align:right"><%=hint%></div>
+			<div id ="hint"style="text-align:right"><%=hint%></div>
 
 			<!-- 2020/7/20 古門　以上　ヒント吹き出しの追加 -->
 
  			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以下変更-->
 			<!-- 2020/7/20 古門　以下　ラジオボタン選択後の挙動の追加 -->
 
-					<div class ="child" id ="input-field" style="text-align:left">
-						<form action=" <%= request.getContextPath() %>/main" method="Post" name='tukkomi' id="answer-check" >
-							<input type="radio" name="Answer" value="A" id="answer-check">
-							1：
-								<%=tukkomiA%><br>
-							<input type="radio" name="Answer" value="B" id="answer-check">
-							2：
-								<%=tukkomiB%><br>
-							<input type="radio" name="Answer" value="C" id="answer-check" required>
-							3：
-								<%=tukkomiC%><br>
-							<input type="button" value="突っ込め！！" name="ANSWER" id= "chat-button"
-							onclick="btnFunc('<%=tukkomiA%>','<%=tukkomiB%>','<%=tukkomiC%>','<%=zokusei%>')">
-							</form>
-					</div>
+			<div class ="child" id ="input-field" style="text-align:left">
+				<form action=" <%= request.getContextPath() %>/main" method="Post" name='tukkomi' id="answer-check" >
+					<input type="radio" name="Answer" value="A" id="answer-check">
+					1：
+						<%=tukkomiA%><br>
+					<input type="radio" name="Answer" value="B" id="answer-check">
+					2：
+						<%=tukkomiB%><br>
+					<input type="radio" name="Answer" value="C" id="answer-check" required>
+					3：
+						<%=tukkomiC%><br>
+					<input type="button" value="突っ込め！！" name="ANSWER" id= "chat-button"
+					onclick="btnFunc('<%=tukkomiA%>','<%=tukkomiB%>','<%=tukkomiC%>','<%=zokusei%>')">
+					</form>
+			</div>
 
 			<!-- (2020/7/7)古門　ツッコミをラジオボタンで選択できるようにしてます 以上変更-->
 			<!-- 2020/7/20 古門　以上　ラジオボタン選択後の挙動の追加 -->
