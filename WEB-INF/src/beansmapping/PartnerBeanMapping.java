@@ -18,7 +18,7 @@ public class PartnerBeanMapping implements ResultSetBeanMapping<PartnerBean>{
 		pbean.setAid1(rs.getInt("AID1"));
 		pbean.setAid2(rs.getInt("AID2"));
 		pbean.setAid3(rs.getInt("AID3"));
-
+		pbean.setPscore(rs.getInt("PSCORE"));
 		return pbean;
 	}
 }

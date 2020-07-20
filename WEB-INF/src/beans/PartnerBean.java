@@ -10,14 +10,18 @@ public class PartnerBean {
 	private int aid1;
 	private int aid2;
 	private int aid3;
+	private int pscore;
+
+
 
 
 
 	public PartnerBean() {}
 
+	//2020/07/20 古門　以下　コンストラクタに相方倍率をセット、ゲッターセッターを作成
 
-
-	public PartnerBean(int pid, String pname, int bid1,int bid2,int bid3, int aid1,int aid2,int aid3) {
+	public PartnerBean(int pid, String pname, int bid1, int bid2, int bid3, int aid1, int aid2, int aid3, int pscore) {
+		super();
 		this.pid = pid;
 		this.pname = pname;
 		this.bid1 = bid1;
@@ -26,8 +30,8 @@ public class PartnerBean {
 		this.aid1 = aid1;
 		this.aid2 = aid2;
 		this.aid3 = aid3;
+		this.pscore = pscore;
 	}
-
 
 
 	public int getBid1() {
@@ -124,5 +128,17 @@ public class PartnerBean {
 		this.pname = pname;
 	}
 
+
+
+	public int getPscore() {
+		return pscore;
+	}
+
+
+
+	public void setPscore(int pscore) {
+		this.pscore = pscore;
+	}
+	//2020/07/20 古門　以上　コンストラクタに相方倍率をセット、ゲッターセッターを作成
 
 }

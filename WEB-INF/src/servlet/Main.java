@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.AnsBean;
 import beans.BokeBean;
+import beans.PartnerBean;
 import beans.PointBean;
 import model.BattleLogic;
 
@@ -38,19 +40,29 @@ public class Main extends HttpServlet {
 		//(2020/7/7)古門　セッションスコープからボケ属性取得　BattleLogicへ　以下追加
 
 		HttpSession session = request.getSession();
-		List<BokeBean> bokeList = ((List<BokeBean>)session.getAttribute("bokeList"));
+		//pointインスタンス（ポイント合計情報）の生成
+		PointBean prepoint = (PointBean)session.getAttribute("point");
+		int num = prepoint.getCount();
+
+
+		List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+		PartnerBean pbean = partnerList.get(0);
+
+
+		List<BokeBean> bokeList = ((List<BokeBean>)session.getAttribute("bokeList"+num));
 		BokeBean bbean = bokeList.get(0);
 
-		//(2020/7/7)古門　以上追加
 
+		List<AnsBean> AnsList = (List<AnsBean>)session.getAttribute("ansList"+num);
+		AnsBean abean = AnsList.get(0);
+
+		//(2020/7/7)古門　以上追加
+		double score[]= {pbean.getPscore(),bbean.getBscore(),abean.getAscore()};
 
 		//BattleLogicの呼び出し(2020/07/02)変数がjlだったのでblに変更
-		BattleLogic bl = new BattleLogic((int)bbean.getBattri());
+		BattleLogic bl = new BattleLogic((int)bbean.getBattri(), score);
 		 int point = bl.execution(style);
 
-		//pointインスタンス（ポイント合計情報）の生成
-
-		PointBean prepoint = (PointBean)session.getAttribute("point");
 		//前回までのポイントの合計と今回のポイントを足す
 		int totalpoint = prepoint.getPoint() + point;
 		//前回までのカウントに1を足す
