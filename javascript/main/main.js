@@ -125,6 +125,11 @@ function btnFunc(abb,bcc,cdd,uke){
 		}
 	}
 
+	if(!Answer){
+		showFormAnimation();
+		return false;
+		}
+
 	//バリュー値で画面表示のパターンを判別
 	var gradColor = judge(uke,Answer);
 
