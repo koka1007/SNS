@@ -36,8 +36,13 @@
 						<a href="<%= request.getContextPath() %>/Winner">
 							<button class="w3-button w3-xxlarge w3-red btn-color">ランキング</button>
 						</a>
+
+
+
 					</div>
-				</div><br>
+					<a href="http://localhost:8080/shougekinosinjin/zenjitu.jsp">.</a>
+				</div>
+					<br>
 			</div>
 		<!-- メイン部分終了 -->
 
