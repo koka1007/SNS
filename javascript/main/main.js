@@ -45,20 +45,20 @@ function start(partner,me,boke,count){
 
 	var i =0;
 	var talk = setInterval( ()=> {
-					    if(i % 2 ==0){
-					    	output(talk1[i],"partner");
-					        i++;
-					    }else if((i % 2 == 1)){
-					    	output(talk1[i],"me");
-					        i++;
-					    }
+		    if(i % 2 ==0){
+		    	output(talk1[i],"partner");
+		        i++;
+		    }else if((i % 2 == 1)){
+		    	output(talk1[i],"me");
+		        i++;
+		    }
 
-					    if(i == talk1.length){
-					    		showFormAnimation();
-					    		talk1=[];
-								clearInterval(talk);
-					    }
-					}, 1000);
+		    if(i == talk1.length){
+		    		showFormAnimation();
+		    		talk1=[];
+					clearInterval(talk);
+		    }
+		}, 1000);
 
 }
 
@@ -150,60 +150,60 @@ function btnFunc(abb,bcc,cdd,uke){
 
     setTimeout( ()=> {
 
-    			//選択したツッコミを自分のトークとして表示
-			 	output(Answer,"me");
+		//選択したツッコミを自分のトークとして表示
+	 	output(Answer,"me");
 
-			 	// 入力内を空欄にする
-				tukkomi1.value = '';
-
-
-				/*
-				 *gradColorを使用し画面表示を変更
-				 *setIntervalにて繰り返しを行う
-				 *繰り返しのgradCountが2回繰り返されたら
-				 *繰り返しを終了させ、サーブレットに処理を送る。
-				 */
+	 	// 入力内を空欄にする
+		tukkomi1.value = '';
 
 
-				var gradCount = 0;
-				var grad = setInterval( ()=> {
-					switch(gradColor){
-					case 1:
-						div.classList.add('oouke');
-						setTimeout( ()=> {
-						div.classList.remove('oouke');
-						}, 700);
-						break;
-					case 2:
-						div.classList.add('yayauke');
-						setTimeout( ()=> {
-						div.classList.remove('yayauke');
-						}, 700);
-						break;
-					case 3:
-						div.classList.add('suberi');
-						setTimeout( ()=> {
-						div.classList.remove('suberi');
-						}, 700);
-						break;
-					default:
-						break;
-					}
+		/*
+		 *gradColorを使用し画面表示を変更
+		 *setIntervalにて繰り返しを行う
+		 *繰り返しのgradCountが2回繰り返されたら
+		 *繰り返しを終了させ、サーブレットに処理を送る。
+		 */
 
-					gradCount++
 
-					if(gradCount == 2){
-						if(battleCount == 2){
-							output("もうええわ","me");
-							output("どうもありがとうございましたー","conbi");
-						}
-						setTimeout( ()=> {
-							document.tukkomi.submit();
-						}, 1000);
-						battleCount++;
-						clearInterval(grad);
-					}
-						}, 1000);
+		var gradCount = 0;
+		var grad = setInterval( ()=> {
+			switch(gradColor){
+			case 1:
+				div.classList.add('oouke');
+				setTimeout( ()=> {
+				div.classList.remove('oouke');
+				}, 700);
+				break;
+			case 2:
+				div.classList.add('yayauke');
+				setTimeout( ()=> {
+				div.classList.remove('yayauke');
+				}, 700);
+				break;
+			case 3:
+				div.classList.add('suberi');
+				setTimeout( ()=> {
+				div.classList.remove('suberi');
+				}, 700);
+				break;
+			default:
+				break;
+			}
+
+			gradCount++
+
+			if(gradCount == 2){
+				if(battleCount == 2){
+					output("もうええわ","me");
+					output("どうもありがとうございましたー","conbi");
+				}
+				setTimeout( ()=> {
+					document.tukkomi.submit();
+				}, 1000);
+				battleCount++;
+				clearInterval(grad);
+			}
+				}, 1000);
 	}, 1);
 
 };
