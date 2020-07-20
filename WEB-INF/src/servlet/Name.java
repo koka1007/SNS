@@ -82,10 +82,16 @@ public class Name extends HttpServlet {
 
 			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
 			PartnerBean pbean = partnerList.get(0);
-			//Bidを入れてBokeDAOのgetBokeListにわたす
-			List<BokeBean> bokeList = BokeDAO.getBokeList(pbean.getBid1(),pbean.getBid2(),pbean.getBid3());
-			session.setAttribute("bokeList", bokeList);
 
+			//Bid1～3を配列に格納
+			int bokeNum[] = {pbean.getBid1(),pbean.getBid2(),pbean.getBid3()};
+
+			//for文で配列の値でBokeDAOのgetBokeListに渡し、配列の番号でセッションスコープにセット
+			for(int i = 0 ; i < bokeNum.length;i++){
+				List<BokeBean> bokeList = BokeDAO.getBokeList(bokeNum[i]);
+				bokeList.get(0).setBcontext(use_name_boke((String)bokeList.get(0).getBcontext(),registName));
+				session.setAttribute("bokeList"+i, bokeList);
+			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -98,9 +104,13 @@ public class Name extends HttpServlet {
 
 			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
 			PartnerBean pbean = partnerList.get(0);
-			//Aidを入れてAnswerDAOのgetAnsListにわたす
-			List<AnsBean> AnsList = AnsDAO.getAnsList(pbean.getAid1(),pbean.getAid2(),pbean.getAid3());
-			session.setAttribute("ansList", AnsList);
+			//Aid1~3を入れて配列に格納
+			int ansNum[] = {pbean.getAid1(),pbean.getAid2(),pbean.getAid3()};
+			//for文で配列の値でAnsDAOのgetAnsListに渡し、配列の番号でセッションスコープにセット
+			for(int i = 0 ; i < ansNum.length;i++) {
+				List<AnsBean> AnsList = AnsDAO.getAnsList(ansNum[i]);
+				session.setAttribute("ansList"+i, AnsList);
+			}
 
 			String forward = "/view/main.jsp";
 			RequestDispatcher dispatcher =
@@ -115,14 +125,23 @@ public class Name extends HttpServlet {
 
 	}
 
-	private Object getBid3() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
+	String use_name_boke(String bokeSTR,String name) {
+		//Stringの宣言
+		String split[] 		= null;
+		String split1[] 	= null;
+		String str  		= null;
+		//ボケに名前を入れる
+		str = bokeSTR;
+		//指定した文字列が存在するか確認
+		if (str.contains("<%=registName.getName()%>"))
+		{
+			split	= str.split("<");
+			split1 	= split[1].split(">");
+			str 	= split[0] + name + split1[1];
+		}
+		return str;
 	}
 
-	private Object getBid2() {
-		// TODO 自動生成されたメソッド・スタブ
-		return null;
-	}
+
 
 }

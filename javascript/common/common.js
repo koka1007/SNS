@@ -9,6 +9,12 @@ function common_link(){
 		document.write(html);
 }
 
+function main_link(){
+	var html = "";
+		html += '<link rel="stylesheet" href="css/main/main.css">';
+		document.write(html);
+}
+
 //canvasのサイズ等設定
 function canvas_func(){
 	var html = "";
