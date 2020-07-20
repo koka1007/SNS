@@ -50,8 +50,8 @@ body {
 }
 
 .header_size .home:hover{
-  -webkit-transform: perspective(50px) scale(1) translateX(-16.66%) rotateY(30deg);
-          transform: perspective(50px) scale(1) translateX(-16.66%) rotateY(30deg);
+  -webkit-transform: perspective(100px) scale(1) translateX(-12.66%) rotateY(30deg);
+          transform: perspective(100px) scale(1) translateX(-12.66%) rotateY(30deg);
 }
 
 /* 20200709 レイアウトが大きく崩れるため削除 加納
