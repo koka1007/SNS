@@ -21,6 +21,7 @@ import model.BattleLogic;
 public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
@@ -31,6 +32,7 @@ public class Main extends HttpServlet {
 
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//リクエストパラメータの取得
 		//(2020/07/01)Windows-jからUTF-8に変更
@@ -60,7 +62,7 @@ public class Main extends HttpServlet {
 		double score[]= {pbean.getPscore(),bbean.getBscore(),abean.getAscore()};
 
 		//BattleLogicの呼び出し(2020/07/02)変数がjlだったのでblに変更
-		BattleLogic bl = new BattleLogic((int)bbean.getBattri(), score);
+		BattleLogic bl = new BattleLogic(bbean.getBattri(), score);
 		 int point = bl.execution(style);
 
 		//前回までのポイントの合計と今回のポイントを足す

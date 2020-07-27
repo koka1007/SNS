@@ -8,6 +8,7 @@ import beans.BokeBean;
 public class BokeBeanMapping implements ResultSetBeanMapping {
 
 	//クエリ内容を取得しbeanにセットする
+	@Override
 	public BokeBean createFromResultSet(ResultSet rs) throws SQLException{
 
 			BokeBean bbean = new BokeBean();

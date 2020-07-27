@@ -25,6 +25,7 @@ public class Winner extends HttpServlet {
 	static final String RANKING_URL 	= "/view/ranking.jsp";
 	static final String INDEX_URL 	= "index.jsp";
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

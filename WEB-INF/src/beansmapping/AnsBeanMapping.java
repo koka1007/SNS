@@ -7,6 +7,7 @@ import beans.AnsBean;
 
 public class AnsBeanMapping implements ResultSetBeanMapping {
 
+	@Override
 	public AnsBean createFromResultSet(ResultSet rs) throws SQLException{
 
 		//クエリ内容を取得しbeanにセットする
