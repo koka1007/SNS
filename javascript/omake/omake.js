@@ -200,13 +200,18 @@ function canvas_game(){
         ctx.fillText("小松菜ハイボールを飲むと3分時間を巻き戻せる", 20,280);
         ctx.fillText("20km走ると田端に到着する", 20,330);
         ctx.fillText("60分経過すると遅刻になる", 20,380);
-        ctx.fillText("spaceでジャンプ（どのキーでもいい）", 20,430);
-        ctx.fillText("クリックでスタート", 250,530);
+        ctx.fillText("spaceでジャンプ", 20,430);
+        ctx.fillText("スタート後クリックで難易度上昇", 20,480);
+        ctx.fillText("クリックでスタート", 250,580);
+
 
         //クリックイベントリスナー
         document.getElementById("canvas").onclick = function() {
-            clear();
-            canvas_main_game();
+            if(count<3){
+                clear();
+                canvas_main_game();
+                count++;
+            }
         }
     }
 
@@ -275,6 +280,7 @@ function canvas_game(){
     var rand_sspeed =Math.floor(Math.random()*4)+2;
     var mutekizikan =0;
     var sakusya_mutekizikan=0;
+    var count = 0;
 
     // キーボード操作
     document.addEventListener("keydown",moveUp);
@@ -363,6 +369,10 @@ function canvas_game(){
         ctx.fillStyle = 'black';
         ctx.font = "30px serif";
         ctx.fillText(Math.floor(point)+"km", 20,30);
+
+        ctx.fillStyle = 'black';
+        ctx.font = "30px serif";
+        ctx.fillText("レベル"+count, 335,30);
 
         ctx.fillStyle = 'black';
         ctx.font = "30px serif";
