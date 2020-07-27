@@ -112,7 +112,7 @@ function canvas_kaiwa(){
         ctx.fillText("聞いてくれぇーーい！", 220,562);
 	}else if(count == 6 && (swich == true)){
 		ctx.fillText("面白すぎて腰抜かすぜ！", 220,537);
-        ctx.fillText("それ、カルパ・・・", 220,562);
+        ctx.fillText("それ、カルパッ・・・", 220,562);
 
     //社長との最終決戦へ
 	}else if(count == 7 && (swich == true)){
