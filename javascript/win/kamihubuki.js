@@ -1,168 +1,92 @@
-"use strict";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+let screen_w = window.innerWidth;
+let screen_h = window.innerHeight;
+//紙吹雪の量を指定
+const KAMI_MAX = 150;
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var canvas = document.createElement("canvas"),
+ctx = canvas.getContext("2d");
+//色の種類を指定
+const COLORS =
+["#f55","#55f","#5c5","#fa5","#5af"];
 
-var Progress = function () {
-  function Progress() {
-    var param = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+function rand(min,max)
+{
+    return (Math.floor(Math.random()*(max-min+1)+min));
+}
 
-    _classCallCheck(this, Progress);
+class Kami{
+    constructor()
+    {
+        //新しいdivをhtmlに生成
+        this.elm = document.createElement("div");
+        //親ノードと子ノードにelmを自動追加する
+        document.body.appendChild(this.elm);
 
-    this.timestamp = null;
-    this.duration = param.duration || Progress.CONST.DURATION;
-    this.progress = 0;
-    this.delta = 0;
-    this.progress = 0;
-    this.isLoop = !!param.isLoop;
+        this.sty = this.elm.style;
 
-    this.reset();
-  }
+        //画面いっぱいをランダム指定
+        this.x = rand(0,screen_w);
+        this.y = rand(-100,100);
 
-  Progress.prototype.reset = function reset() {
-    this.timestamp = null;
-  };
+        //下に落ちる速さ横に流れる速さをランダムで指定
+        this.vx = rand(-10,10);
+        this.vy = rand(5,10);
 
-  Progress.prototype.start = function start(now) {
-    this.timestamp = now;
-  };
+        this.ang = 0;
 
-  Progress.prototype.tick = function tick(now) {
-    if (this.timestamp) {
-      this.delta = now - this.timestamp;
-      this.progress = Math.min(this.delta / this.duration, 1);
+        //回転のスピードを指定
+        this.spd = rand(15,40);
 
-      if (this.progress >= 1 && this.isLoop) {
-        this.start(now);
-      }
+        //紙、一枚一枚の向きを指定
+        this.rX = rand(0,10)/10;
+        this.rY = rand(0,10)/10;
+        this.rZ = rand(0,10)/10;
 
-      return this.progress;
-    } else {
-      return 0;
+        this.sty.position = "fixed";
+
+        //widthとheightが紙吹雪の長さと幅を指定
+        this.sty.width = "20px";
+        this.sty.height = "10px";
+        //指定した色の中からランダムで色をつける
+        this.sty.backgroundColor = COLORS[
+            rand(0,COLORS.length)];
     }
-  };
+    update()
+    {
+        //ランダムで指定された縦横方向のスピードで落ちる
+        this.x+=this.vx;
+        this.y+=this.vy;
 
-  _createClass(Progress, null, [{
-    key: "CONST",
-    get: function get() {
-      return {
-        DURATION: 1000
-      };
+        //紙が画面に行った時画面ちょっと上に移動
+        if(this.y>=screen_h)
+        {
+            this.x = rand(0,screen_w);
+            this.y = -20;
+        }
+        this.ang += this.spd;
+        //left topは紙吹雪が降ってくる位置を指定している
+        this.sty.left = this.x + "px";
+        this.sty.top =this.y + "px";
+        //rotate3D(xの方向ベクトル,yの方向ベクトル,zの方向ベクトル,回転角度)
+        this.sty.transform = "rotate3D("
+            + this.rX +"," + this.rY +"," + this.rZ +"," +
+            this.ang + "deg)";
     }
-  }]);
+}
 
-  return Progress;
-}();
+//作った紙の枚数分kami[]配列に入れる
+let kami = [];
+for(let i=0;i<KAMI_MAX;i++)
+    kami.push( new Kami() );
 
-var Confetti = function () {
-  function Confetti(param) {
-    _classCallCheck(this, Confetti);
 
-    this.parent = param.elm || document.body;
-    this.canvas = document.createElement("canvas");
-    this.ctx = this.canvas.getContext("2d");
-    this.width = param.width || this.parent.offsetWidth;
-    this.height = param.height || this.parent.offsetHeight;
-    this.length = param.length || Confetti.CONST.PAPER_LENGTH;
-    this.yRange = param.yRange || this.height * 2;
-    this.progress = new Progress({
-      duration: param.duration,
-      isLoop: true
-    });
-    this.rotationRange = typeof param.rotationLength === "number" ? param.rotationRange : 10;
-    this.speedRange = typeof param.speedRange === "number" ? param.speedRange : 10;
-    this.sprites = [];
-
-    this.canvas.style.cssText = ["display: block", "position: absolute", "top: 0", "left: 0", "pointer-events: none"].join(";");
-
-    this.render = this.render.bind(this);
-
-    this.build();
-
-    this.parent.appendChild(this.canvas);
-    this.progress.start(performance.now());
-
-    requestAnimationFrame(this.render);
-  }
-
-  Confetti.prototype.build = function build() {
-    for (var i = 0; i < this.length; ++i) {
-      var canvas = document.createElement("canvas"),
-          ctx = canvas.getContext("2d");
-
-      canvas.width = Confetti.CONST.SPRITE_WIDTH;
-      canvas.height = Confetti.CONST.SPRITE_HEIGHT;
-
-      canvas.position = {
-        initX: Math.random() * this.width,
-        initY: -canvas.height - Math.random() * this.yRange
-      };
-
-      canvas.rotation = this.rotationRange / 2 - Math.random() * this.rotationRange;
-      canvas.speed = this.speedRange / 2 + Math.random() * (this.speedRange / 2);
-
-      ctx.save();
-      ctx.fillStyle = Confetti.CONST.COLORS[Math.random() * Confetti.CONST.COLORS.length | 0];
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.restore();
-
-      this.sprites.push(canvas);
-    }
-  };
-
-  Confetti.prototype.render = function render(now) {
-    var progress = this.progress.tick(now);
-
-    this.canvas.width = this.width;
-    this.canvas.height = this.height;
-
-    for (var i = 0; i < this.length; ++i) {
-      this.ctx.save();
-      this.ctx.translate(this.sprites[i].position.initX + this.sprites[i].rotation * Confetti.CONST.ROTATION_RATE * progress, this.sprites[i].position.initY + progress * (this.height + this.yRange));
-      this.ctx.rotate(this.sprites[i].rotation);
-      this.ctx.drawImage(this.sprites[i], -Confetti.CONST.SPRITE_WIDTH * Math.abs(Math.sin(progress * Math.PI * 2 * this.sprites[i].speed)) / 2, -Confetti.CONST.SPRITE_HEIGHT / 2, Confetti.CONST.SPRITE_WIDTH * Math.abs(Math.sin(progress * Math.PI * 2 * this.sprites[i].speed)), Confetti.CONST.SPRITE_HEIGHT);
-      this.ctx.restore();
-    }
-
-    requestAnimationFrame(this.render);
-  };
-
-  _createClass(Confetti, null, [{
-    key: "CONST",
-    get: function get() {
-      return {
-        SPRITE_WIDTH: 9,
-        SPRITE_HEIGHT: 16,
-        PAPER_LENGTH: 100,
-        DURATION: 8000,
-        ROTATION_RATE: 50,
-        COLORS: ["#EF5350", "#EC407A", "#AB47BC", "#7E57C2", "#5C6BC0", "#42A5F5", "#29B6F6", "#26C6DA", "#26A69A", "#66BB6A", "#9CCC65", "#D4E157", "#FFEE58", "#FFCA28", "#FFA726", "#FF7043", "#8D6E63", "#BDBDBD", "#78909C"]
-      };
-    }
-  }]);
-
-  return Confetti;
-}();
-
-(function () {
-  var DURATION = 8000,
-      LENGTH = 120;
-  setTimeout(function () {
-	  new Confetti({
-	    width: window.innerWidth,
-	    height: window.innerHeight,
-	    length: LENGTH,
-	    duration: DURATION
-	  });
-
-	  setTimeout(function () {
-	    new Confetti({
-	      width: window.innerWidth,
-	      height: window.innerHeight,
-	      length: LENGTH,
-	      duration: DURATION
-	    });
-	  }, DURATION / 2);
-  }, 3500);
-})();
+//紙の中にあるupdateメソッドを呼び出す
+setTimeout(function() {
+	setInterval(mainLoop,1000/20);
+	function mainLoop()
+	{
+	    for(let i=0;i<KAMI_MAX;i++)
+	    kami[i].update();
+	}
+}, 3500);
