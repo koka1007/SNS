@@ -1,7 +1,9 @@
 package beans;
 
-public class BokeBean {
+import java.io.Serializable;
 
+public class BokeBean implements Serializable{
+	//public class BokeBean7/29表田implements Serializableを追加
 	private int bid1;
 	private int bid2;
 	private int bid3;

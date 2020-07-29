@@ -1,7 +1,9 @@
 package beans;
 
-public class PartnerBean {
+import java.io.Serializable;
 
+public class PartnerBean implements Serializable{
+	//public class PartnerBean7/29表田implements Serializableを追加
 	private int pid;
 	private String pname;
 	private int bid1;

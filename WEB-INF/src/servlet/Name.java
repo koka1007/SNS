@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -63,6 +62,7 @@ public class Name extends HttpServlet {
 		/*ボケ役を呼ぶ（三人から一人ランダムで選ぶ）
 		 ここでは数字しか返さないがMainで数字によって発言に変化を
 		 持たせる処理を行う。ここでは1,2,3のどれかが返ってくる*/
+
 		Boke boke = new Boke();
 		int aikataNumber = boke.aikata_select();
 
@@ -72,18 +72,9 @@ public class Name extends HttpServlet {
 			List<PartnerBean> PartnerList = PartnerDAO.getPartnerList(aikataNumber);
 			session.setAttribute("partnerList", PartnerList);
 
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-
-		//	以下ボケ取得処理
-
-
-		try {
-
-			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
-			PartnerBean pbean = partnerList.get(0);
+			//以下ボケ取得処理
+			//List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
+			PartnerBean pbean = PartnerList.get(0);
 
 			//Bid1～3を配列に格納
 			int bokeNum[] = {pbean.getBid1(),pbean.getBid2(),pbean.getBid3()};
@@ -93,33 +84,28 @@ public class Name extends HttpServlet {
 				List<BokeBean> bokeList = BokeDAO.getBokeList(bokeNum[i]);
 				bokeList.get(0).setBcontext(use_name_boke(bokeList.get(0).getBcontext(),registName));
 				session.setAttribute("bokeList"+i, bokeList);
+
+				//以下ツッコミ取得処理
+				//Aid1~3を入れて配列に格納
+				int ansNum[] = {pbean.getAid1(),pbean.getAid2(),pbean.getAid3()};
+				//for文で配列の値でAnsDAOのgetAnsListに渡し、配列の番号でセッションスコープにセット
+				//for内の変数iをjに変更7/29表田
+				for(int j = 0 ; j < ansNum.length;j++) {
+					List<AnsBean> AnsList = AnsDAO.getAnsList(ansNum[j]);
+					session.setAttribute("ansList"+j, AnsList);
+				}
+
+				String forward = "/view/main.jsp";
+				RequestDispatcher dispatcher =
+				//main.jspに移動
+				request.getRequestDispatcher(forward);
+				dispatcher.forward(request, response);
+
+
 			}
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-			System.out.println(e);
-		}
 
-			//以下ツッコミ取得処理
-
-		try {
-
-			List<PartnerBean> partnerList = (List<PartnerBean>)session.getAttribute("partnerList");
-			PartnerBean pbean = partnerList.get(0);
-			//Aid1~3を入れて配列に格納
-			int ansNum[] = {pbean.getAid1(),pbean.getAid2(),pbean.getAid3()};
-			//for文で配列の値でAnsDAOのgetAnsListに渡し、配列の番号でセッションスコープにセット
-			for(int i = 0 ; i < ansNum.length;i++) {
-				List<AnsBean> AnsList = AnsDAO.getAnsList(ansNum[i]);
-				session.setAttribute("ansList"+i, AnsList);
-			}
-
-			String forward = "/view/main.jsp";
-			RequestDispatcher dispatcher =
-			//main.jspに移動
-			request.getRequestDispatcher(forward);
-			dispatcher.forward(request, response);
-		} catch (SQLException e) {
+		//} catch (SQLException e) { 7/29全てのエラーをキャッチするために変更
+			} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 			System.out.println(e);

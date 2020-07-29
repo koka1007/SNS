@@ -1,6 +1,9 @@
 package beans;
 
-public class AnsBean {
+import java.io.Serializable;
+
+public class AnsBean implements Serializable{
+	//public class AnsBean7/29表田implements Serializableを追加
 	private int aid1;
 	private int aid2;
 	private int aid3;
