@@ -98,6 +98,12 @@ function droptext(){
             ctx.fillText("MANや！", 580,260);
         }
 
+        this.win_yudou_text = function(){
+            ctx.fillStyle = '#000000';
+            ctx.font = "32px serif";
+            ctx.fillText("画面下部の『ランキング登録』から芸名を登録しよう！", 20,540);
+        }
+
 
         //人の表示
         this.human = function(){
@@ -191,6 +197,7 @@ function droptext(){
         		down.win_text2();
         		down.win_text3();
         		down.win_text4();
+        		down.win_yudou_text();
 
                 if(down.texty >= 900){
                 	down.textmoverest();

@@ -1,7 +1,9 @@
 package beans;
 
-public class RankingBean {
+import java.io.Serializable;
 
+public class RankingBean implements Serializable{
+	//public class RankingBean7/29表田implements Serializableを追加
 	//ランキングナンバー(Column名:RNO)
 	private String rno;
 	//ランキング用ネーム(Column名:RNAME)
