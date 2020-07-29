@@ -8,6 +8,7 @@ import beans.PartnerBean;
 public class PartnerBeanMapping implements ResultSetBeanMapping<PartnerBean>{
 
 	//クエリ内容を取得しbeanにセットする
+	@Override
 	public PartnerBean createFromResultSet(ResultSet rs) throws SQLException{
 		PartnerBean pbean = new PartnerBean();
 		pbean.setPid(rs.getInt("PID"));

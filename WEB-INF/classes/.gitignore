@@ -3,5 +3,6 @@
 /dao/
 /dbmanager/
 /model/
-/omake/
 /servlet/
+/snippet/
+/omake/

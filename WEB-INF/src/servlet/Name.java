@@ -24,6 +24,7 @@ import model.Boke;
 public class Name extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//h refでdoGet（ここ）に飛んできたやつはTOP(index.jsp)にフォワードする
@@ -32,6 +33,7 @@ public class Name extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -89,7 +91,7 @@ public class Name extends HttpServlet {
 			//for文で配列の値でBokeDAOのgetBokeListに渡し、配列の番号でセッションスコープにセット
 			for(int i = 0 ; i < bokeNum.length;i++){
 				List<BokeBean> bokeList = BokeDAO.getBokeList(bokeNum[i]);
-				bokeList.get(0).setBcontext(use_name_boke((String)bokeList.get(0).getBcontext(),registName));
+				bokeList.get(0).setBcontext(use_name_boke(bokeList.get(0).getBcontext(),registName));
 				session.setAttribute("bokeList"+i, bokeList);
 			}
 		} catch (SQLException e) {

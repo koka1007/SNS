@@ -1,5 +1,7 @@
 //clickのカウント
 var count = 0;
+var swich = false;
+
 
 //初期化処理を行う
 function start(){
@@ -70,6 +72,7 @@ Asset._loadImage = function(asset, onLoad) {
 function render_image(){
 	ctx.drawImage(Asset.images['back'],0,0);
 	ctx.drawImage(Asset.images['huki'],180, 430, 300, 220);
+	canvas_kaiwa();
 }
 
 //-------------------------テキストを使えるようにする-------------------------------------------
@@ -80,28 +83,46 @@ function render_image(){
 //クリックイベントリスナー
 document.getElementById("canvas").onclick = function() {
 	count++;
+	canvas_kaiwa();
+}
 
-	ctx.clearRect(190,533,260, 25);
-	ctx.clearRect(230,512,200, 60);
-	ctx.clearRect(425,530,30, 30);
+//会話表示機能
+function canvas_kaiwa(){
+
+	ctx.drawImage(Asset.images['huki'],180, 430, 300, 220);
+
 	ctx.fillStyle = '#000000';
     ctx.font = "20px serif";
 
-	if(count==1){
+	if(count==0){
         ctx.fillText("ここにあるのは戦いの記録だ", 190,550);
-	}else if(count==2){
+	}else if(count == 1){
         ctx.fillText("みてみて！この上腕二頭筋", 200,550);
-	}else if(count==3){
-        ctx.fillText("あれは吹雪の中の", 230,535);
-        ctx.fillText("ことじゃった……", 230,560);
-	}else if(count==4){
-        ctx.fillText("え？続き気になる？", 230,535);
-        ctx.fillText("気になる？オシエナーイ!", 230,560);
+	}else if(count == 2){
+        ctx.fillText("あれは吹雪の中の", 220,535);
+        ctx.fillText("ことじゃった……", 220,560);
+	}else if(count == 3){
+        ctx.fillText("え？続き気になる？", 220,535);
+        ctx.fillText("気になる？オシエナーイ!", 220,560);
+	}else if(count == 4 && (swich == true)){
+		ctx.fillText("え？しかたないなぁ", 220,537);
+        ctx.fillText("そのまえに！！", 220,562);
+	}else if(count == 5 && (swich == true)){
+		ctx.fillText("俺の一発ギャグを", 220,537);
+        ctx.fillText("聞いてくれぇーーい！", 220,562);
+	}else if(count == 6 && (swich == true)){
+		ctx.fillText("面白すぎて腰抜かすぜ！", 220,537);
+        ctx.fillText("それ、カルパッ・・・", 220,562);
+
+    //社長との最終決戦へ
+	}else if(count == 7 && (swich == true)){
+		location.href = "http://localhost:8080/shougekinosinjin/rpg.jsp";
 	}else{
 		count_reset();
+		swich = true;
 	}
 }
 
 count_reset = function() {
-    this.count=0;
+    this.count=-1;
 }

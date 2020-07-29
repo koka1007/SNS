@@ -19,6 +19,7 @@ public class Judge extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		//Pointから得点を受け取り合格基準を達成しているか判定する。
